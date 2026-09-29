@@ -200,6 +200,18 @@
 .field--half{grid-column:auto}
 .field label{display:block;font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px;color:rgba(7,17,31,.64)}
 .field input,.field select,.field textarea{width:100%;border:1px solid rgba(7,17,31,.2);background:#f7f8fa;padding:13px 14px;color:var(--ink);border-radius:0;font:inherit}
+.contact__form .field input,.contact__form .field select,.contact__form .field textarea,
+.coverage-form-wrap .field input,.coverage-form-wrap .field select,.coverage-form-wrap .field textarea,
+.sim-panel .field input,.sim-panel .field select,.sim-panel .field textarea{
+  border:2px solid #9aa5b1!important;background:#fff!important;min-height:52px;
+}
+.contact__form .field textarea,.coverage-form-wrap .field textarea,.sim-panel .field textarea{min-height:130px}
+.contact__form .field input:hover,.contact__form .field select:hover,.contact__form .field textarea:hover,
+.coverage-form-wrap .field input:hover,.coverage-form-wrap .field select:hover,.coverage-form-wrap .field textarea:hover,
+.sim-panel .field input:hover,.sim-panel .field select:hover,.sim-panel .field textarea:hover{border-color:#596474!important}
+.contact__form .field input:focus,.contact__form .field select:focus,.contact__form .field textarea:focus,
+.coverage-form-wrap .field input:focus,.coverage-form-wrap .field select:focus,.coverage-form-wrap .field textarea:focus,
+.sim-panel .field input:focus,.sim-panel .field select:focus,.sim-panel .field textarea:focus{border-color:var(--red)!important;outline:2px solid rgba(197,31,47,.18);outline-offset:1px}
 .field textarea{resize:vertical}
 .check{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;font-size:.78rem;color:rgba(7,17,31,.62)}
 .check input{margin-top:4px;accent-color:var(--red)}
@@ -208,6 +220,18 @@
 .form__status.is-error{color:#a01421}
 .form__status.is-success{color:#12613c}
 .form__note{font-size:.7rem;color:rgba(7,17,31,.45)}
+#contactSubmit,#coverageSubmit,#sendRequest{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;min-height:54px;font-weight:600}
+#contactSubmit:hover,#coverageSubmit:hover,#sendRequest:hover{background:#9f1827!important;border-color:#9f1827!important}
+#contactSubmit:disabled,#coverageSubmit:disabled,#sendRequest:disabled{opacity:.68;cursor:wait}
+
+.success-dialog{width:min(520px,calc(100% - 32px));padding:0;border:0;background:transparent;color:var(--ink)}
+.success-dialog::backdrop{background:rgba(3,10,20,.78);backdrop-filter:blur(4px)}
+.success-dialog__card{position:relative;background:#fff;padding:clamp(32px,6vw,54px);border-top:5px solid var(--red);box-shadow:0 30px 90px rgba(0,0,0,.3);text-align:center}
+.success-dialog__icon{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 22px;border-radius:50%;background:#e9f6ef;color:#12613c;font-size:1.7rem;font-weight:700}
+.success-dialog h2{font-family:var(--serif);font-size:clamp(2rem,6vw,3rem);line-height:1;margin:0 0 14px}
+.success-dialog p{margin:0;color:#596474;line-height:1.65}
+.success-dialog__close{margin-top:28px;min-width:170px;background:var(--red);color:#fff;border:1px solid var(--red);padding:14px 22px;font:600 .82rem var(--sans);cursor:pointer}
+.success-dialog__x{position:absolute;right:14px;top:10px;border:0;background:none;color:#596474;font-size:1.7rem;cursor:pointer}
 
 .site-footer{padding:70px 0 28px;background:#050c16;border-top:1px solid var(--hair-dark)}
 .site-footer__inner{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:36px}

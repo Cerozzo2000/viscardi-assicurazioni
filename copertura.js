@@ -203,20 +203,22 @@
     status.className = 'form__status';
     status.textContent = '';
     try {
+      if (window.location.protocol === 'file:' && !window.__ALLOW_LOCAL_FORM_TESTS__) throw new Error('LOCAL_PREVIEW');
       var response = await fetch(deliveryEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       });
       var responseData = await response.json().catch(function () { return {}; });
-      if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error('Invio non riuscito');
+      if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error(responseData.message || 'Invio non riuscito');
       document.getElementById('coverageSummary').textContent = 'La richiesta per “' + service.title + '” è stata consegnata all’indirizzo lavorativo di Gennaro. Sarai ricontattato ai recapiti indicati.';
       form.hidden = true;
       result.hidden = false;
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (window.ViscardiForms) window.ViscardiForms.showSuccessDialog('La richiesta per “' + service.title + '” è stata inviata correttamente. Grazie: Gennaro ti ricontatterà appena possibile.');
     } catch (error) {
       status.className = 'form__status is-error';
-      status.textContent = 'Non è stato possibile inviare la richiesta. Controlla la connessione e riprova tra poco.';
+      status.textContent = error.message === 'LOCAL_PREVIEW' ? 'L’invio email funziona dal sito pubblicato, non dall’anteprima locale. Apri il sito su Vercel e riprova.' : 'Invio non completato. Controlla la casella email di Gennaro per l’attivazione FormSubmit, quindi riprova.';
       submitButton.disabled = false;
       submitButton.textContent = 'Riprova l’invio';
     }

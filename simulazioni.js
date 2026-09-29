@@ -195,6 +195,7 @@
     button.disabled = true;
     button.textContent = 'Invio in corso…';
     try {
+      if (window.location.protocol === 'file:' && !window.__ALLOW_LOCAL_FORM_TESTS__) throw new Error('LOCAL_PREVIEW');
       var response = await fetch('https://formsubmit.co/ajax/viscardigennaro2001@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -212,13 +213,14 @@
         })
       });
       var responseData = await response.json().catch(function () { return {}; });
-      if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error('Invio non riuscito');
+      if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error(responseData.message || 'Invio non riuscito');
       status.className = 'form__status is-success';
       status.textContent = 'Richiesta inviata correttamente. Gennaro la riceverà direttamente via email.';
       button.textContent = 'Richiesta inviata';
+      if (window.ViscardiForms) window.ViscardiForms.showSuccessDialog('La simulazione è stata inviata correttamente. Grazie per la richiesta: Gennaro ti ricontatterà appena possibile.');
     } catch (error) {
       status.className = 'form__status is-error';
-      status.textContent = 'Non è stato possibile inviare la richiesta. Controlla la connessione e riprova.';
+      status.textContent = error.message === 'LOCAL_PREVIEW' ? 'L’invio email funziona dal sito pubblicato, non dall’anteprima locale. Apri il sito su Vercel e riprova.' : 'Invio non completato. Controlla la casella email di Gennaro per l’attivazione FormSubmit, quindi riprova.';
       button.disabled = false;
       button.textContent = 'Riprova l’invio';
     }

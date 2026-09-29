@@ -4,6 +4,24 @@
   var $ = function (selector, context) { return (context || document).querySelector(selector); };
   var $$ = function (selector, context) { return Array.prototype.slice.call((context || document).querySelectorAll(selector)); };
 
+  function showSuccessDialog(message) {
+    var dialog = document.getElementById('requestSuccessDialog');
+    if (!dialog) {
+      dialog = document.createElement('dialog');
+      dialog.id = 'requestSuccessDialog';
+      dialog.className = 'success-dialog';
+      dialog.setAttribute('aria-labelledby', 'requestSuccessTitle');
+      dialog.innerHTML = '<div class="success-dialog__card"><button class="success-dialog__x" type="button" aria-label="Chiudi">×</button><span class="success-dialog__icon" aria-hidden="true">✓</span><h2 id="requestSuccessTitle">Grazie per la richiesta</h2><p data-success-message></p><button class="success-dialog__close" type="button">Chiudi</button></div>';
+      document.body.appendChild(dialog);
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog || event.target.closest('.success-dialog__close,.success-dialog__x')) dialog.close();
+      });
+    }
+    $('[data-success-message]', dialog).textContent = message || 'La richiesta è stata inviata correttamente. Gennaro ti ricontatterà appena possibile.';
+    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
+  }
+  window.ViscardiForms = { showSuccessDialog: showSuccessDialog };
+
   var header = $('#siteHeader');
   var wa = $('#waFab');
   function updateChrome() {
@@ -213,20 +231,22 @@
       contactSubmit.disabled = true;
       contactSubmit.textContent = 'Invio in corso…';
       try {
+        if (window.location.protocol === 'file:' && !window.__ALLOW_LOCAL_FORM_TESTS__) throw new Error('LOCAL_PREVIEW');
         var response = await fetch('https://formsubmit.co/ajax/viscardigennaro2001@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
         });
         var responseData = await response.json().catch(function () { return {}; });
-        if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error('Invio non riuscito');
+        if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error(responseData.message || 'Invio non riuscito');
         status.className = 'form__status is-success';
         status.textContent = 'Richiesta inviata correttamente. Gennaro la riceverà direttamente via email.';
         form.reset();
         contactSubmit.textContent = 'Richiesta inviata';
+        showSuccessDialog('La richiesta è stata inviata correttamente. Grazie per averci contattato: Gennaro ti ricontatterà appena possibile.');
       } catch (error) {
         status.className = 'form__status is-error';
-        status.textContent = 'Non è stato possibile inviare la richiesta. Controlla la connessione e riprova.';
+        status.textContent = error.message === 'LOCAL_PREVIEW' ? 'L’invio email funziona dal sito pubblicato, non dall’anteprima locale. Apri il sito su Vercel e riprova.' : 'Invio non completato. Controlla la casella email di Gennaro per l’attivazione FormSubmit, quindi riprova.';
         contactSubmit.disabled = false;
         contactSubmit.textContent = 'Riprova l’invio';
       }
