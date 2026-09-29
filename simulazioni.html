@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulazione guidata del rischio | Viscardi Assicurazioni</title>
+<meta name="description" content="Inserisci i dati essenziali della tua attività e invia direttamente a Gennaro una richiesta di analisi già strutturata.">
+<link rel="canonical" href="https://www.gennaroviscardiassicurazioni.it/simulazioni.html">
+<meta name="theme-color" content="#07111F">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="enhancements.css">
+</head>
+<body class="subpage">
+<a class="skip-link" href="#main">Vai al contenuto</a>
+<header class="site-header is-stuck"><div class="site-header__inner">
+  <a class="wordmark" href="index.html" aria-label="Viscardi Assicurazioni, home"><span class="wordmark__partners"><img src="assets/images/compagnie-lockup.webp" width="1200" height="400" alt="AXA, Zurich e Generali"></span><span class="wordmark__text"><span class="wordmark__name">Viscardi</span><span class="wordmark__sub">Assicurazioni</span></span></a>
+  <nav class="site-nav" aria-label="Navigazione principale"><a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="simulazioni.html" aria-current="page">Simulazioni</a><a href="index.html#profilo">Chi sono</a></nav>
+  <div class="site-header__actions"><a class="btn btn--solid btn--sm" href="tel:+393895555251">Chiama Gennaro</a></div>
+</div></header>
+
+<main id="main">
+  <section class="page-hero"><div class="wrap"><p class="page-hero__eyebrow">Simulazione guidata</p><h1>Partiamo dai dati che contano.</h1><p class="page-hero__lede">In tre passaggi raccogli le informazioni essenziali. Al termine ottieni un primo livello di priorità e invii direttamente a Gennaro una richiesta già ordinata.</p></div></section>
+
+  <section class="wrap sim-layout" aria-label="Simulatore del rischio">
+    <aside class="sim-side"><p class="page-hero__eyebrow">Prima del preventivo</p><h2>Non è un prezzo automatico.</h2><p>Il simulatore evidenzia la priorità di approfondimento e prepara la richiesta. Garanzie, limiti ed esclusioni si definiscono solo dopo il confronto con Gennaro.</p><p class="sim-note">I dati restano nel browser finché non scegli di inviarli. Nessuna informazione viene salvata da questa pagina.</p></aside>
+    <div class="sim-panel">
+      <div class="sim-progress" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
+      <form id="riskSimulator" novalidate>
+        <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <section class="sim-step" data-step="1">
+          <p class="sim-step__label">Passaggio 1 di 3</p><h2>Che cosa vuoi analizzare?</h2>
+          <div class="sim-options">
+            <label class="sim-option"><input type="radio" name="service" value="responsabilita" required><span>Responsabilità civile<br><small>RCT, RCO, RCI, D&amp;O</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="cantiere"><span>Opere e cantieri<br><small>CAR e postuma</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="property"><span>Azienda e continuità<br><small>Fabbricati, macchinari, fermo</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="rc_auto"><span>RC Auto<br><small>Auto privata e conducenti</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="rc_auto_furto_incendio"><span>RCA + Furto e Incendio<br><small>Responsabilità civile e protezione del veicolo</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="rc_moto"><span>RC Moto<br><small>Moto e utilizzo</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="mobilita"><span>Mobilità e trasporto<br><small>Flotte, mezzi, merci</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="cyber"><span>Cyber risk<br><small>Sistemi e dati</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="casa"><span>Casa e immobili<br><small>Fabbricato, contenuto, impianti</small></span></label>
+            <label class="sim-option"><input type="radio" name="service" value="persona"><span>Persona<br><small>Infortuni, salute, vita, previdenza</small></span></label>
+          </div>
+          <div class="sim-actions"><span></span><button class="btn btn--solid" type="button" data-next>Continua</button></div>
+        </section>
+
+        <section class="sim-step" data-step="2" hidden>
+          <p class="sim-step__label">Passaggio 2 di 3</p><h2>Le informazioni essenziali</h2>
+          <div class="sim-fields" id="dynamicFields"></div>
+          <div class="sim-actions"><button class="btn" type="button" data-back>Indietro</button><button class="btn btn--solid" type="button" data-next>Calcola la priorità</button></div>
+        </section>
+
+        <section class="sim-step" data-step="3" hidden>
+          <p class="sim-step__label">Passaggio 3 di 3</p><h2>Invia la richiesta a Gennaro</h2>
+          <div class="sim-result" id="simResult" aria-live="polite"></div>
+          <div class="sim-fields">
+            <div class="field"><label for="simName">Nome e cognome</label><input id="simName" name="nome" autocomplete="name" required></div>
+            <div class="field"><label for="simCompany">Azienda</label><input id="simCompany" name="azienda" autocomplete="organization"></div>
+            <div class="field"><label for="simPhone">Telefono</label><input id="simPhone" name="telefono" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="simEmail">Email</label><input id="simEmail" name="email" type="email" autocomplete="email"></div>
+            <div class="field" style="grid-column:1/-1"><label for="simNotes">Note o dubbi</label><textarea id="simNotes" name="note" rows="4"></textarea></div>
+          </div>
+          <label class="check" style="margin-top:18px"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e autorizzo il ricontatto.</span></label>
+          <p class="form__status" id="simStatus" role="status"></p>
+          <div class="sim-actions"><button class="btn" type="button" data-back>Indietro</button></div>
+          <div class="sim-send"><button class="btn btn--solid" type="button" id="sendRequest">Invia la richiesta a Gennaro</button></div>
+        </section>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap site-footer__inner"><div class="site-footer__brand"><p class="site-footer__name">Viscardi<br><span>Assicurazioni</span></p><p class="site-footer__claim">Il rischio non si vede. Si analizza.</p></div><div class="site-footer__col"><h2>Contatti</h2><ul><li>Sede fisica: prossima apertura</li><li><a href="tel:+393895555251">389 555 5251</a></li><li><a href="tel:+393920053353">392 005 3353</a></li><li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li></ul></div><div class="site-footer__col"><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="simulazioni.html">Simulazioni</a></li></ul></div><div class="site-footer__col"><h2>Informazioni</h2><ul><li>Numero RUI: E000736639</li><li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Verifica iscrizione RUI</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="cookie.html">Cookie policy</a></li></ul></div><div class="site-footer__bottom"><p>© <span id="year">2026</span> Viscardi Assicurazioni</p><p class="site-footer__marks">La simulazione ha finalità orientativa e non costituisce preventivo o proposta contrattuale.</p></div></div></footer>
+<script src="script.js" defer></script>
+<script src="simulazioni.js" defer></script>
+</body>
+</html>

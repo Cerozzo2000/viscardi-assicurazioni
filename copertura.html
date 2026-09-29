@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Copertura assicurativa | Viscardi Assicurazioni</title>
+  <meta name="description" content="Approfondisci la copertura, raccogli le informazioni utili e invia una richiesta a Viscardi Assicurazioni.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#001c4b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
+</head>
+<body class="subpage coverage-page">
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__inner">
+    <a class="wordmark" href="index.html" aria-label="Viscardi Assicurazioni, home">
+      <span class="wordmark__partners"><img src="assets/images/compagnie-lockup.webp" width="1200" height="400" alt="AXA, Zurich e Generali"></span>
+      <span class="wordmark__text"><span class="wordmark__name">Viscardi</span><span class="wordmark__sub">Assicurazioni</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Navigazione principale"><a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="simulazioni.html">Simulazioni</a><a href="index.html#profilo">Chi sono</a></nav>
+    <div class="site-header__actions"><a class="btn btn--solid btn--sm" href="tel:+393895555251">Chiama Gennaro</a></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="coverage-hero">
+    <div class="wrap coverage-hero__grid">
+      <div class="coverage-hero__copy">
+        <a class="coverage-back" href="servizi.html">← Tutti i servizi</a>
+        <p class="page-hero__eyebrow" id="coverageArea">Copertura</p>
+        <h1 id="coverageTitle">Servizio assicurativo</h1>
+        <p class="coverage-hero__lead" id="coverageLead"></p>
+        <div class="coverage-tags" id="coverageTags" aria-label="Aspetti analizzati"></div>
+      </div>
+      <figure class="coverage-hero__media"><img id="coverageImage" src="assets/images/rc-auto.png" width="1536" height="1024" alt=""></figure>
+    </div>
+  </section>
+
+  <section class="coverage-main">
+    <div class="wrap coverage-main__grid">
+      <aside class="coverage-guide">
+        <p class="page-hero__eyebrow">Simulazione guidata</p>
+        <h2>Raccontaci la tua situazione.</h2>
+        <p>Le risposte servono a preparare una richiesta ordinata. Non generano un prezzo automatico: il preventivo dipende dai dati completi, dalle garanzie e dalle condizioni applicabili.</p>
+        <ol>
+          <li><span>01</span>Inserisci i dati essenziali</li>
+          <li><span>02</span>Controlla il riepilogo</li>
+          <li><span>03</span>Invia direttamente a Gennaro</li>
+        </ol>
+      </aside>
+
+      <div class="coverage-form-wrap">
+        <form id="coverageForm" novalidate>
+          <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="coverage-form__head"><p class="sim-step__label">Richiesta di preventivo</p><h2 id="formTitle">Le informazioni essenziali</h2></div>
+          <div class="coverage-fields" id="coverageFields"></div>
+          <div class="coverage-contact">
+            <div class="field"><label for="cName">Nome e cognome</label><input id="cName" name="nome" autocomplete="name" required></div>
+            <div class="field"><label for="cPhone">Telefono</label><input id="cPhone" name="telefono" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email"></div>
+            <div class="field"><label for="cCity">Comune</label><input id="cCity" name="comune" autocomplete="address-level2"></div>
+            <div class="field coverage-full"><label for="cNotes">Note o richieste particolari</label><textarea id="cNotes" name="note" rows="4"></textarea></div>
+          </div>
+          <label class="check coverage-full"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e autorizzo il ricontatto.</span></label>
+          <p class="form__status" id="coverageStatus" role="status"></p>
+          <button class="btn btn--solid btn--full" id="coverageSubmit" type="submit">Invia la richiesta a Gennaro</button>
+        </form>
+
+        <div class="coverage-result" id="coverageResult" hidden>
+          <p class="sim-step__label">Invio completato</p>
+          <h2>Richiesta inviata.</h2>
+          <p id="coverageSummary"></p>
+          <a class="btn btn--solid" href="servizi.html">Esplora altri servizi</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage-more"><div class="wrap coverage-more__inner"><div><p class="page-hero__eyebrow">Non è questa?</p><h2>Esplora tutte le coperture.</h2></div><a class="btn btn--solid" href="servizi.html">Vai al catalogo</a></div></section>
+</main>
+
+<footer class="site-footer"><div class="wrap site-footer__inner"><div class="site-footer__brand"><p class="site-footer__name">Viscardi<br><span>Assicurazioni</span></p><p class="site-footer__claim">Il rischio non si vede. Si analizza.</p></div><div class="site-footer__col"><h2>Contatti</h2><ul><li><a href="tel:+393895555251">389 555 5251</a></li><li><a href="tel:+393920053353">392 005 3353</a></li><li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li></ul></div><div class="site-footer__col"><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="simulazioni.html">Simulazioni</a></li></ul></div><div class="site-footer__col"><h2>Informazioni</h2><ul><li>Numero RUI: E000736639</li><li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Verifica iscrizione RUI</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="cookie.html">Cookie policy</a></li></ul></div><div class="site-footer__bottom"><p>© <span id="year">2026</span> Viscardi Assicurazioni</p><p class="site-footer__marks">La simulazione è orientativa e non costituisce preventivo, proposta contrattuale o garanzia di assicurabilità.</p></div></div></footer>
+
+<script src="script.js" defer></script>
+<script src="copertura.js" defer></script>
+</body>
+</html>

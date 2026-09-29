@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viscardi Assicurazioni — Analisi personalizzata del rischio</title>
+<meta name="description" content="Analisi personalizzata delle coperture per attività, mobilità, casa e persona nella provincia di Caserta.">
+<link rel="canonical" href="https://www.gennaroviscardiassicurazioni.it/">
+<meta name="theme-color" content="#07111F">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Viscardi Assicurazioni — Il rischio non si vede. Si analizza.">
+<meta property="og:description" content="Analisi personalizzata delle coperture per attività, mobilità, casa e persona in provincia di Caserta.">
+<meta property="og:url" content="https://www.gennaroviscardiassicurazioni.it/">
+<meta property="og:site_name" content="Viscardi Assicurazioni">
+<meta property="og:image" content="https://www.gennaroviscardiassicurazioni.it/assets/images/edilizia.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="enhancements.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Viscardi Assicurazioni",
+  "description": "Studio assicurativo per l’analisi personalizzata dei rischi di attività, mobilità, casa e persona.",
+  "url": "https://www.gennaroviscardiassicurazioni.it/",
+  "telephone": ["+39 389 555 5251", "+39 392 005 3353"],
+  "email": "viscardigennaro2001@gmail.com",
+  "areaServed": ["Provincia di Caserta", "Campania"]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="siteHeader">
+  <div class="site-header__inner">
+
+    <a class="wordmark" href="index.html" aria-label="Viscardi Assicurazioni, torna alla home">
+      <span class="wordmark__partners"><img src="assets/images/compagnie-lockup.webp" width="1200" height="400" alt="AXA, Zurich e Generali"></span>
+      <span class="wordmark__text">
+        <span class="wordmark__name">Viscardi</span>
+        <span class="wordmark__sub">Assicurazioni</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigazione principale">
+      <a href="servizi.html">Servizi</a>
+      <a href="simulazioni.html">Simulazioni</a>
+      <a href="#compagnie">Compagnie</a>
+      <a href="#profilo">Chi sono</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="megaMenu">
+        <span class="menu-btn__bars" aria-hidden="true"><i></i><i></i></span>
+        <span class="menu-btn__label">Coperture</span>
+      </button>
+      <a class="btn btn--solid btn--sm" href="simulazioni.html">Simula il rischio</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================ MEGA MENU ============================ -->
+<div class="mega" id="megaMenu" hidden>
+  <div class="mega__inner">
+
+    <div class="mega__intro">
+      <p class="mega__eyebrow">Aree di intervento</p>
+      <h2 class="mega__title">Diciannove servizi,<br>una scelta guidata.</h2>
+      <p class="mega__lede">Scegli una copertura per approfondirla, raccogliere le informazioni utili e preparare una richiesta da inviare direttamente a Gennaro.</p>
+      <a class="btn btn--ghost btn--sm" href="#contatti" data-mega-close>Parliamone</a>
+    </div>
+
+    <div class="mega__cats">
+      <ul class="mega__catlist" id="megaCats" role="tablist" aria-label="Categorie di copertura"></ul>
+    </div>
+
+    <div class="mega__panel">
+      <ul class="mega__services" id="megaServices"></ul>
+    </div>
+
+    <button type="button" class="mega__close" id="megaClose" aria-label="Chiudi il menu">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+    </button>
+
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero hero--visual">
+  <div class="hero__grid">
+
+    <div class="hero__text">
+      <h1 class="hero__title">Il rischio non si vede.<br>Si analizza.</h1>
+      <p class="hero__lede">Ogni situazione parte da una domanda diversa: l’attività, i mezzi, la casa, la salute o il futuro. Prima si capisce cosa può succedere davvero; solo dopo si sceglie la copertura più adatta.</p>
+
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#contatti">Richiedi un'analisi</a>
+        <a class="btn btn--ghost" href="servizi.html">Esplora tutti i servizi</a>
+        <a class="btn btn--whatsapp hero__whatsapp" href="https://wa.me/393895555251?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20sulle%20coperture%20assicurative." target="_blank" rel="noopener" aria-label="Contatta Gennaro su WhatsApp">WhatsApp</a>
+      </div>
+
+    </div>
+
+    <div class="hero__system" aria-hidden="false">
+      <nav class="hero-areas" aria-label="Esplora le quattro aree dei servizi">
+        <p class="hero-areas__label">Da dove vuoi partire?</p>
+        <a href="servizi.html#impresa"><span>01</span><strong>Impresa</strong><i aria-hidden="true">↗</i></a>
+        <a href="servizi.html#mobilita"><span>02</span><strong>Mobilità</strong><i aria-hidden="true">↗</i></a>
+        <a href="servizi.html#casa"><span>03</span><strong>Casa</strong><i aria-hidden="true">↗</i></a>
+        <a href="servizi.html#persona"><span>04</span><strong>Persona</strong><i aria-hidden="true">↗</i></a>
+      </nav>
+      <svg class="risk-system" hidden aria-hidden="true" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" data-risk-system>
+<title id="rsTitle">Mappa dei rischi</title>
+<desc id="rsDesc">Sistema radiale che raggruppa le aree di rischio in quattro quadranti: impresa, mobilità, casa e persona. Ogni quadrante è interattivo.</desc>
+<circle cx="400" cy="400" r="352" class="rs-plate"/>
+<g class="rs-rotate-cw">
+<line x1="400" y1="48" x2="400" y2="62" class="rs-tick rs-tick--long"/>
+<line x1="418.42" y1="48.48" x2="418.06" y2="55.47" class="rs-tick"/>
+<line x1="436.79" y1="49.93" x2="436.06" y2="56.89" class="rs-tick"/>
+<line x1="455.06" y1="52.33" x2="453.97" y2="59.25" class="rs-tick"/>
+<line x1="473.18" y1="55.69" x2="471.73" y2="62.54" class="rs-tick"/>
+<line x1="491.1" y1="59.99" x2="489.29" y2="66.76" class="rs-tick"/>
+<line x1="508.77" y1="65.23" x2="506.61" y2="71.89" class="rs-tick"/>
+<line x1="526.15" y1="71.38" x2="523.64" y2="77.91" class="rs-tick"/>
+<line x1="543.17" y1="78.43" x2="540.32" y2="84.83" class="rs-tick"/>
+<line x1="559.8" y1="86.37" x2="556.63" y2="92.6" class="rs-tick"/>
+<line x1="576" y1="95.16" x2="569" y2="107.28" class="rs-tick rs-tick--long"/>
+<line x1="591.71" y1="104.79" x2="587.9" y2="110.66" class="rs-tick"/>
+<line x1="606.9" y1="115.23" x2="602.79" y2="120.89" class="rs-tick"/>
+<line x1="621.52" y1="126.44" x2="617.12" y2="131.88" class="rs-tick"/>
+<line x1="635.53" y1="138.41" x2="630.85" y2="143.62" class="rs-tick"/>
+<line x1="648.9" y1="151.1" x2="643.95" y2="156.05" class="rs-tick"/>
+<line x1="661.59" y1="164.47" x2="656.38" y2="169.15" class="rs-tick"/>
+<line x1="673.56" y1="178.48" x2="668.12" y2="182.88" class="rs-tick"/>
+<line x1="684.77" y1="193.1" x2="679.11" y2="197.21" class="rs-tick"/>
+<line x1="695.21" y1="208.29" x2="689.34" y2="212.1" class="rs-tick"/>
+<line x1="704.84" y1="224" x2="692.72" y2="231" class="rs-tick rs-tick--long"/>
+<line x1="713.63" y1="240.2" x2="707.4" y2="243.37" class="rs-tick"/>
+<line x1="721.57" y1="256.83" x2="715.17" y2="259.68" class="rs-tick"/>
+<line x1="728.62" y1="273.85" x2="722.09" y2="276.36" class="rs-tick"/>
+<line x1="734.77" y1="291.23" x2="728.11" y2="293.39" class="rs-tick"/>
+<line x1="740.01" y1="308.9" x2="733.24" y2="310.71" class="rs-tick"/>
+<line x1="744.31" y1="326.82" x2="737.46" y2="328.27" class="rs-tick"/>
+<line x1="747.67" y1="344.94" x2="740.75" y2="346.03" class="rs-tick"/>
+<line x1="750.07" y1="363.21" x2="743.11" y2="363.94" class="rs-tick"/>
+<line x1="751.52" y1="381.58" x2="744.53" y2="381.94" class="rs-tick"/>
+<line x1="752" y1="400" x2="738" y2="400" class="rs-tick rs-tick--long"/>
+<line x1="751.52" y1="418.42" x2="744.53" y2="418.06" class="rs-tick"/>
+<line x1="750.07" y1="436.79" x2="743.11" y2="436.06" class="rs-tick"/>
+<line x1="747.67" y1="455.06" x2="740.75" y2="453.97" class="rs-tick"/>
+<line x1="744.31" y1="473.18" x2="737.46" y2="471.73" class="rs-tick"/>
+<line x1="740.01" y1="491.1" x2="733.24" y2="489.29" class="rs-tick"/>
+<line x1="734.77" y1="508.77" x2="728.11" y2="506.61" class="rs-tick"/>
+<line x1="728.62" y1="526.15" x2="722.09" y2="523.64" class="rs-tick"/>
+<line x1="721.57" y1="543.17" x2="715.17" y2="540.32" class="rs-tick"/>
+<line x1="713.63" y1="559.8" x2="707.4" y2="556.63" class="rs-tick"/>
+<line x1="704.84" y1="576" x2="692.72" y2="569" class="rs-tick rs-tick--long"/>
+<line x1="695.21" y1="591.71" x2="689.34" y2="587.9" class="rs-tick"/>
+<line x1="684.77" y1="606.9" x2="679.11" y2="602.79" class="rs-tick"/>
+<line x1="673.56" y1="621.52" x2="668.12" y2="617.12" class="rs-tick"/>
+<line x1="661.59" y1="635.53" x2="656.38" y2="630.85" class="rs-tick"/>
+<line x1="648.9" y1="648.9" x2="643.95" y2="643.95" class="rs-tick"/>
+<line x1="635.53" y1="661.59" x2="630.85" y2="656.38" class="rs-tick"/>
+<line x1="621.52" y1="673.56" x2="617.12" y2="668.12" class="rs-tick"/>
+<line x1="606.9" y1="684.77" x2="602.79" y2="679.11" class="rs-tick"/>
+<line x1="591.71" y1="695.21" x2="587.9" y2="689.34" class="rs-tick"/>
+<line x1="576" y1="704.84" x2="569" y2="692.72" class="rs-tick rs-tick--long"/>
+<line x1="559.8" y1="713.63" x2="556.63" y2="707.4" class="rs-tick"/>
+<line x1="543.17" y1="721.57" x2="540.32" y2="715.17" class="rs-tick"/>
+<line x1="526.15" y1="728.62" x2="523.64" y2="722.09" class="rs-tick"/>
+<line x1="508.77" y1="734.77" x2="506.61" y2="728.11" class="rs-tick"/>
+<line x1="491.1" y1="740.01" x2="489.29" y2="733.24" class="rs-tick"/>
+<line x1="473.18" y1="744.31" x2="471.73" y2="737.46" class="rs-tick"/>
+<line x1="455.06" y1="747.67" x2="453.97" y2="740.75" class="rs-tick"/>
+<line x1="436.79" y1="750.07" x2="436.06" y2="743.11" class="rs-tick"/>
+<line x1="418.42" y1="751.52" x2="418.06" y2="744.53" class="rs-tick"/>
+<line x1="400" y1="752" x2="400" y2="738" class="rs-tick rs-tick--long"/>
+<line x1="381.58" y1="751.52" x2="381.94" y2="744.53" class="rs-tick"/>
+<line x1="363.21" y1="750.07" x2="363.94" y2="743.11" class="rs-tick"/>
+<line x1="344.94" y1="747.67" x2="346.03" y2="740.75" class="rs-tick"/>
+<line x1="326.82" y1="744.31" x2="328.27" y2="737.46" class="rs-tick"/>
+<line x1="308.9" y1="740.01" x2="310.71" y2="733.24" class="rs-tick"/>
+<line x1="291.23" y1="734.77" x2="293.39" y2="728.11" class="rs-tick"/>
+<line x1="273.85" y1="728.62" x2="276.36" y2="722.09" class="rs-tick"/>
+<line x1="256.83" y1="721.57" x2="259.68" y2="715.17" class="rs-tick"/>
+<line x1="240.2" y1="713.63" x2="243.37" y2="707.4" class="rs-tick"/>
+<line x1="224" y1="704.84" x2="231" y2="692.72" class="rs-tick rs-tick--long"/>
+<line x1="208.29" y1="695.21" x2="212.1" y2="689.34" class="rs-tick"/>
+<line x1="193.1" y1="684.77" x2="197.21" y2="679.11" class="rs-tick"/>
+<line x1="178.48" y1="673.56" x2="182.88" y2="668.12" class="rs-tick"/>
+<line x1="164.47" y1="661.59" x2="169.15" y2="656.38" class="rs-tick"/>
+<line x1="151.1" y1="648.9" x2="156.05" y2="643.95" class="rs-tick"/>
+<line x1="138.41" y1="635.53" x2="143.62" y2="630.85" class="rs-tick"/>
+<line x1="126.44" y1="621.52" x2="131.88" y2="617.12" class="rs-tick"/>
+<line x1="115.23" y1="606.9" x2="120.89" y2="602.79" class="rs-tick"/>
+<line x1="104.79" y1="591.71" x2="110.66" y2="587.9" class="rs-tick"/>
+<line x1="95.16" y1="576" x2="107.28" y2="569" class="rs-tick rs-tick--long"/>
+<line x1="86.37" y1="559.8" x2="92.6" y2="556.63" class="rs-tick"/>
+<line x1="78.43" y1="543.17" x2="84.83" y2="540.32" class="rs-tick"/>
+<line x1="71.38" y1="526.15" x2="77.91" y2="523.64" class="rs-tick"/>
+<line x1="65.23" y1="508.77" x2="71.89" y2="506.61" class="rs-tick"/>
+<line x1="59.99" y1="491.1" x2="66.76" y2="489.29" class="rs-tick"/>
+<line x1="55.69" y1="473.18" x2="62.54" y2="471.73" class="rs-tick"/>
+<line x1="52.33" y1="455.06" x2="59.25" y2="453.97" class="rs-tick"/>
+<line x1="49.93" y1="436.79" x2="56.89" y2="436.06" class="rs-tick"/>
+<line x1="48.48" y1="418.42" x2="55.47" y2="418.06" class="rs-tick"/>
+<line x1="48" y1="400" x2="62" y2="400" class="rs-tick rs-tick--long"/>
+<line x1="48.48" y1="381.58" x2="55.47" y2="381.94" class="rs-tick"/>
+<line x1="49.93" y1="363.21" x2="56.89" y2="363.94" class="rs-tick"/>
+<line x1="52.33" y1="344.94" x2="59.25" y2="346.03" class="rs-tick"/>
+<line x1="55.69" y1="326.82" x2="62.54" y2="328.27" class="rs-tick"/>
+<line x1="59.99" y1="308.9" x2="66.76" y2="310.71" class="rs-tick"/>
+<line x1="65.23" y1="291.23" x2="71.89" y2="293.39" class="rs-tick"/>
+<line x1="71.38" y1="273.85" x2="77.91" y2="276.36" class="rs-tick"/>
+<line x1="78.43" y1="256.83" x2="84.83" y2="259.68" class="rs-tick"/>
+<line x1="86.37" y1="240.2" x2="92.6" y2="243.37" class="rs-tick"/>
+<line x1="95.16" y1="224" x2="107.28" y2="231" class="rs-tick rs-tick--long"/>
+<line x1="104.79" y1="208.29" x2="110.66" y2="212.1" class="rs-tick"/>
+<line x1="115.23" y1="193.1" x2="120.89" y2="197.21" class="rs-tick"/>
+<line x1="126.44" y1="178.48" x2="131.88" y2="182.88" class="rs-tick"/>
+<line x1="138.41" y1="164.47" x2="143.62" y2="169.15" class="rs-tick"/>
+<line x1="151.1" y1="151.1" x2="156.05" y2="156.05" class="rs-tick"/>
+<line x1="164.47" y1="138.41" x2="169.15" y2="143.62" class="rs-tick"/>
+<line x1="178.48" y1="126.44" x2="182.88" y2="131.88" class="rs-tick"/>
+<line x1="193.1" y1="115.23" x2="197.21" y2="120.89" class="rs-tick"/>
+<line x1="208.29" y1="104.79" x2="212.1" y2="110.66" class="rs-tick"/>
+<line x1="224" y1="95.16" x2="231" y2="107.28" class="rs-tick rs-tick--long"/>
+<line x1="240.2" y1="86.37" x2="243.37" y2="92.6" class="rs-tick"/>
+<line x1="256.83" y1="78.43" x2="259.68" y2="84.83" class="rs-tick"/>
+<line x1="273.85" y1="71.38" x2="276.36" y2="77.91" class="rs-tick"/>
+<line x1="291.23" y1="65.23" x2="293.39" y2="71.89" class="rs-tick"/>
+<line x1="308.9" y1="59.99" x2="310.71" y2="66.76" class="rs-tick"/>
+<line x1="326.82" y1="55.69" x2="328.27" y2="62.54" class="rs-tick"/>
+<line x1="344.94" y1="52.33" x2="346.03" y2="59.25" class="rs-tick"/>
+<line x1="363.21" y1="49.93" x2="363.94" y2="56.89" class="rs-tick"/>
+<line x1="381.58" y1="48.48" x2="381.94" y2="55.47" class="rs-tick"/>
+</g>
+<g class="rs-rotate-ccw">
+<circle cx="400" cy="400" r="110" class="rs-ring"/>
+<circle cx="400" cy="400" r="175" class="rs-ring"/>
+<circle cx="400" cy="400" r="240" class="rs-ring"/>
+<circle cx="400" cy="400" r="300" class="rs-ring"/>
+<line x1="400" y1="304" x2="400" y2="100" class="rs-spoke"/>
+<line x1="424.85" y1="307.27" x2="477.65" y2="110.22" class="rs-spoke"/>
+<line x1="448" y1="316.86" x2="550" y2="140.19" class="rs-spoke"/>
+<line x1="467.88" y1="332.12" x2="612.13" y2="187.87" class="rs-spoke"/>
+<line x1="483.14" y1="352" x2="659.81" y2="250" class="rs-spoke"/>
+<line x1="492.73" y1="375.15" x2="689.78" y2="322.35" class="rs-spoke"/>
+<line x1="496" y1="400" x2="700" y2="400" class="rs-spoke"/>
+<line x1="492.73" y1="424.85" x2="689.78" y2="477.65" class="rs-spoke"/>
+<line x1="483.14" y1="448" x2="659.81" y2="550" class="rs-spoke"/>
+<line x1="467.88" y1="467.88" x2="612.13" y2="612.13" class="rs-spoke"/>
+<line x1="448" y1="483.14" x2="550" y2="659.81" class="rs-spoke"/>
+<line x1="424.85" y1="492.73" x2="477.65" y2="689.78" class="rs-spoke"/>
+<line x1="400" y1="496" x2="400" y2="700" class="rs-spoke"/>
+<line x1="375.15" y1="492.73" x2="322.35" y2="689.78" class="rs-spoke"/>
+<line x1="352" y1="483.14" x2="250" y2="659.81" class="rs-spoke"/>
+<line x1="332.12" y1="467.88" x2="187.87" y2="612.13" class="rs-spoke"/>
+<line x1="316.86" y1="448" x2="140.19" y2="550" class="rs-spoke"/>
+<line x1="307.27" y1="424.85" x2="110.22" y2="477.65" class="rs-spoke"/>
+<line x1="304" y1="400" x2="100" y2="400" class="rs-spoke"/>
+<line x1="307.27" y1="375.15" x2="110.22" y2="322.35" class="rs-spoke"/>
+<line x1="316.86" y1="352" x2="140.19" y2="250" class="rs-spoke"/>
+<line x1="332.12" y1="332.12" x2="187.87" y2="187.87" class="rs-spoke"/>
+<line x1="352" y1="316.86" x2="250" y2="140.19" class="rs-spoke"/>
+<line x1="375.15" y1="307.27" x2="322.35" y2="110.22" class="rs-spoke"/>
+</g>
+<g class="rs-chords">
+<path d="M 260.2 192.74 Q 369.31 332.17 359.25 208.28" class="rs-chord" data-a="impresa" data-b="impresa"/>
+<path d="M 260.2 192.74 Q 385.07 323.19 451.98 155.46" class="rs-chord" data-a="impresa" data-b="impresa"/>
+<path d="M 359.25 208.28 Q 385.4 346.32 354.85 275.96" class="rs-chord" data-a="impresa" data-b="impresa"/>
+<path d="M 451.98 155.46 Q 427.69 311.77 510.88 125.55" class="rs-chord" data-a="impresa" data-b="impresa"/>
+<path d="M 493.94 260.72 Q 408.3 355.24 354.85 275.96" class="rs-chord" data-a="impresa" data-b="impresa"/>
+<path d="M 493.94 260.72 Q 453.5 356.37 620.74 282.63" class="rs-chord" data-a="impresa" data-b="mobilita"/>
+<path d="M 620.74 282.63 Q 469.65 376.67 588.96 380.14" class="rs-chord" data-a="mobilita" data-b="mobilita"/>
+<path d="M 588.96 380.14 Q 474.28 408.71 648.01 471.11" class="rs-chord" data-a="mobilita" data-b="mobilita"/>
+<path d="M 648.01 471.11 Q 464.71 427.3 532.65 489.47" class="rs-chord" data-a="mobilita" data-b="mobilita"/>
+<path d="M 532.65 489.47 Q 443.46 451.43 523 613.04" class="rs-chord" data-a="mobilita" data-b="casa"/>
+<path d="M 523 613.04 Q 425.26 467.19 425.61 582.21" class="rs-chord" data-a="casa" data-b="casa"/>
+<path d="M 425.61 582.21 Q 393.91 472.87 338.55 646.46" class="rs-chord" data-a="casa" data-b="casa"/>
+<path d="M 338.55 646.46 Q 373.77 465.29 307.17 537.62" class="rs-chord" data-a="casa" data-b="casa"/>
+<path d="M 307.17 537.62 Q 348.3 444.14 188.69 522" class="rs-chord" data-a="casa" data-b="persona"/>
+<path d="M 188.69 522 Q 333.44 425.05 219.77 425.33" class="rs-chord" data-a="persona" data-b="persona"/>
+<path d="M 219.77 425.33 Q 327.79 393.94 155.49 339.04" class="rs-chord" data-a="persona" data-b="persona"/>
+<path d="M 155.49 339.04 Q 334.47 373.48 259.06 304.94" class="rs-chord" data-a="persona" data-b="persona"/>
+<path d="M 259.06 304.94 Q 352.28 348.61 260.2 192.74" class="rs-chord" data-a="persona" data-b="impresa"/>
+<path d="M 260.2 192.74 Q 397.14 400.98 523 613.04" class="rs-chord" data-a="impresa" data-b="casa"/>
+<path d="M 354.85 275.96 Q 356.4 399.65 188.69 522" class="rs-chord" data-a="impresa" data-b="persona"/>
+<path d="M 451.98 155.46 Q 451 370.52 648.01 471.11" class="rs-chord" data-a="impresa" data-b="mobilita"/>
+<path d="M 510.88 125.55 Q 408.4 395.24 338.55 646.46" class="rs-chord" data-a="impresa" data-b="casa"/>
+</g>
+<g class="rs-nodes">
+<g class="rs-node" data-node="RCT" data-sector="impresa">
+<circle cx="260.2" cy="192.74" r="20" class="rs-node__halo"/>
+<circle cx="260.2" cy="192.74" r="4.2" class="rs-node__dot"/>
+<text x="260.2" y="177.74" class="rs-node__label" text-anchor="middle">RCT</text>
+</g>
+<g class="rs-node" data-node="RCO" data-sector="impresa">
+<circle cx="359.25" cy="208.28" r="20" class="rs-node__halo"/>
+<circle cx="359.25" cy="208.28" r="4.2" class="rs-node__dot"/>
+<text x="359.25" y="193.28" class="rs-node__label" text-anchor="middle">RCO</text>
+</g>
+<g class="rs-node" data-node="RCI" data-sector="impresa">
+<circle cx="451.98" cy="155.46" r="20" class="rs-node__halo"/>
+<circle cx="451.98" cy="155.46" r="4.2" class="rs-node__dot"/>
+<text x="451.98" y="140.46" class="rs-node__label" text-anchor="middle">RCI</text>
+</g>
+<g class="rs-node" data-node="CYB" data-sector="impresa">
+<circle cx="493.94" cy="260.72" r="20" class="rs-node__halo"/>
+<circle cx="493.94" cy="260.72" r="4.2" class="rs-node__dot"/>
+<text x="493.94" y="245.72" class="rs-node__label" text-anchor="middle">CYB</text>
+</g>
+<g class="rs-node" data-node="D&O" data-sector="impresa">
+<circle cx="354.85" cy="275.96" r="20" class="rs-node__halo"/>
+<circle cx="354.85" cy="275.96" r="4.2" class="rs-node__dot"/>
+<text x="354.85" y="260.96" class="rs-node__label" text-anchor="middle">D&O</text>
+</g>
+<g class="rs-node" data-node="POST" data-sector="impresa">
+<circle cx="510.88" cy="125.55" r="20" class="rs-node__halo"/>
+<circle cx="510.88" cy="125.55" r="4.2" class="rs-node__dot"/>
+<text x="510.88" y="110.55" class="rs-node__label" text-anchor="middle">POST</text>
+</g>
+<g class="rs-node" data-node="RCA" data-sector="mobilita">
+<circle cx="620.74" cy="282.63" r="20" class="rs-node__halo"/>
+<circle cx="620.74" cy="282.63" r="4.2" class="rs-node__dot"/>
+<text x="620.74" y="267.63" class="rs-node__label" text-anchor="middle">RCA</text>
+</g>
+<g class="rs-node" data-node="KSK" data-sector="mobilita">
+<circle cx="588.96" cy="380.14" r="20" class="rs-node__halo"/>
+<circle cx="588.96" cy="380.14" r="4.2" class="rs-node__dot"/>
+<text x="588.96" y="365.14" class="rs-node__label" text-anchor="middle">KSK</text>
+</g>
+<g class="rs-node" data-node="FLT" data-sector="mobilita">
+<circle cx="648.01" cy="471.11" r="20" class="rs-node__halo"/>
+<circle cx="648.01" cy="471.11" r="4.2" class="rs-node__dot"/>
+<text x="648.01" y="456.11" class="rs-node__label" text-anchor="middle">FLT</text>
+</g>
+<g class="rs-node" data-node="MRC" data-sector="mobilita">
+<circle cx="532.65" cy="489.47" r="20" class="rs-node__halo"/>
+<circle cx="532.65" cy="489.47" r="4.2" class="rs-node__dot"/>
+<text x="532.65" y="474.47" class="rs-node__label" text-anchor="middle">MRC</text>
+</g>
+<g class="rs-node" data-node="INC" data-sector="casa">
+<circle cx="523" cy="613.04" r="20" class="rs-node__halo"/>
+<circle cx="523" cy="613.04" r="4.2" class="rs-node__dot"/>
+<text x="523" y="598.04" class="rs-node__label" text-anchor="middle">INC</text>
+</g>
+<g class="rs-node" data-node="FUR" data-sector="casa">
+<circle cx="425.61" cy="582.21" r="20" class="rs-node__halo"/>
+<circle cx="425.61" cy="582.21" r="4.2" class="rs-node__dot"/>
+<text x="425.61" y="567.21" class="rs-node__label" text-anchor="middle">FUR</text>
+</g>
+<g class="rs-node" data-node="FBB" data-sector="casa">
+<circle cx="338.55" cy="646.46" r="20" class="rs-node__halo"/>
+<circle cx="338.55" cy="646.46" r="4.2" class="rs-node__dot"/>
+<text x="338.55" y="631.46" class="rs-node__label" text-anchor="middle">FBB</text>
+</g>
+<g class="rs-node" data-node="FTV" data-sector="casa">
+<circle cx="307.17" cy="537.62" r="20" class="rs-node__halo"/>
+<circle cx="307.17" cy="537.62" r="4.2" class="rs-node__dot"/>
+<text x="307.17" y="522.62" class="rs-node__label" text-anchor="middle">FTV</text>
+</g>
+<g class="rs-node" data-node="INF" data-sector="persona">
+<circle cx="188.69" cy="522" r="20" class="rs-node__halo"/>
+<circle cx="188.69" cy="522" r="4.2" class="rs-node__dot"/>
+<text x="188.69" y="507" class="rs-node__label" text-anchor="middle">INF</text>
+</g>
+<g class="rs-node" data-node="TCM" data-sector="persona">
+<circle cx="219.77" cy="425.33" r="20" class="rs-node__halo"/>
+<circle cx="219.77" cy="425.33" r="4.2" class="rs-node__dot"/>
+<text x="219.77" y="410.33" class="rs-node__label" text-anchor="middle">TCM</text>
+</g>
+<g class="rs-node" data-node="MAL" data-sector="persona">
+<circle cx="155.49" cy="339.04" r="20" class="rs-node__halo"/>
+<circle cx="155.49" cy="339.04" r="4.2" class="rs-node__dot"/>
+<text x="155.49" y="324.04" class="rs-node__label" text-anchor="middle">MAL</text>
+</g>
+<g class="rs-node" data-node="PRV" data-sector="persona">
+<circle cx="259.06" cy="304.94" r="20" class="rs-node__halo"/>
+<circle cx="259.06" cy="304.94" r="4.2" class="rs-node__dot"/>
+<text x="259.06" y="289.94" class="rs-node__label" text-anchor="middle">PRV</text>
+</g>
+</g>
+<g class="rs-sector" data-sector="impresa" tabindex="0" role="button" aria-label="Area Impresa">
+<path d="M 207.22 213.83 A 268 268 0 0 1 592.78 213.83" class="rs-hit" fill="none"/>
+<path d="M 162.62 170.76 A 330 330 0 0 1 637.38 170.76" class="rs-arc" fill="none"/>
+<path d="M 162.62 170.76 A 330 330 0 0 1 637.38 170.76" class="rs-arc-active" fill="none"/>
+<text x="400" y="89" class="rs-sector__label" text-anchor="middle">Impresa</text>
+</g>
+<g class="rs-sector" data-sector="mobilita" tabindex="0" role="button" aria-label="Area Mobilità">
+<path d="M 592.78 213.83 A 268 268 0 0 1 592.78 586.17" class="rs-hit" fill="none"/>
+<path d="M 637.38 170.76 A 330 330 0 0 1 637.38 629.24" class="rs-arc" fill="none"/>
+<path d="M 637.38 170.76 A 330 330 0 0 1 637.38 629.24" class="rs-arc-active" fill="none"/>
+<text x="718" y="407" class="rs-sector__label" text-anchor="middle">Mobilità</text>
+</g>
+<g class="rs-sector" data-sector="casa" tabindex="0" role="button" aria-label="Area Casa">
+<path d="M 592.78 586.17 A 268 268 0 0 1 207.22 586.17" class="rs-hit" fill="none"/>
+<path d="M 637.38 629.24 A 330 330 0 0 1 162.62 629.24" class="rs-arc" fill="none"/>
+<path d="M 637.38 629.24 A 330 330 0 0 1 162.62 629.24" class="rs-arc-active" fill="none"/>
+<text x="400" y="725" class="rs-sector__label" text-anchor="middle">Casa</text>
+</g>
+<g class="rs-sector" data-sector="persona" tabindex="0" role="button" aria-label="Area Persona">
+<path d="M 207.22 586.17 A 268 268 0 0 1 207.22 213.83" class="rs-hit" fill="none"/>
+<path d="M 162.62 629.24 A 330 330 0 0 1 162.62 170.76" class="rs-arc" fill="none"/>
+<path d="M 162.62 629.24 A 330 330 0 0 1 162.62 170.76" class="rs-arc-active" fill="none"/>
+<text x="82" y="407" class="rs-sector__label" text-anchor="middle">Persona</text>
+</g>
+<line x1="333.82" y1="336.09" x2="158.3" y2="166.59" class="rs-divider"/>
+<line x1="466.18" y1="336.09" x2="641.7" y2="166.59" class="rs-divider"/>
+<line x1="466.18" y1="463.91" x2="641.7" y2="633.41" class="rs-divider"/>
+<line x1="333.82" y1="463.91" x2="158.3" y2="633.41" class="rs-divider"/>
+<circle cx="400" cy="400" r="88" class="rs-core"/>
+<circle cx="400" cy="400" r="88" class="rs-core-ring"/>
+<circle cx="400" cy="400" r="6" class="rs-core-dot"/>
+<text x="400" y="384" class="rs-core__k" text-anchor="middle">ANALISI</text>
+<text x="400" y="420" class="rs-core__v" text-anchor="middle" data-core-count>18</text>
+<text x="400" y="440" class="rs-core__u" text-anchor="middle">aree mappate</text>
+</svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ COMPAGNIE ============================ -->
+<section class="carriers carriers--after-hero" id="compagnie">
+  <div class="wrap carriers__inner">
+    <div class="carriers__text">
+      <p class="sec-head__eyebrow">Collaborazioni</p>
+      <h2 class="sec-head__title">Le compagnie</h2>
+      <p>Viscardi Assicurazioni collabora con AXA, Zurich e Generali. La possibilità di lavorare con più compagnie consente di valutare approcci e condizioni differenti in base alla situazione del cliente.</p>
+    </div>
+    <figure class="carriers__lockup">
+      <img src="assets/images/compagnie-lockup.webp" width="1200" height="400" decoding="async" alt="Compagnie AXA, Zurich e Generali">
+      <figcaption>AXA · Zurich · Generali</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ POSIZIONAMENTO ============================ -->
+<section class="stance" id="posizionamento">
+  <div class="wrap stance__inner">
+    <p class="stance__lead">Molte persone scoprono un vuoto nella copertura nel momento peggiore: quando il danno è già successo.</p>
+    <div class="stance__cols">
+      <p>Non capita per distrazione. Le polizze si accumulano negli anni, una alla volta, e raramente vengono rilette come un unico sistema. Così una garanzia può essere pagata due volte mentre un rischio davvero importante resta fuori.</p>
+      <p>Il lavoro comincia prima del preventivo: capire la situazione, le persone coinvolte, i beni da proteggere e l’effetto concreto di un imprevisto. Poi si confrontano le coperture e si sceglie la compagnia più adatta a quel rischio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ QUATTRO MONDI ============================ -->
+<section class="worlds" id="mondi">
+  <div class="wrap">
+    <header class="sec-head">
+      <h2 class="sec-head__title">Quattro aree, nessuna viene prima</h2>
+      <p class="sec-head__lede">Il punto di partenza non è il prodotto: è la situazione in cui vi riconoscete.</p>
+    </header>
+
+    <div class="worlds__grid">
+      <article class="world">
+        <p class="world__tag">01 · Attività</p>
+        <h3 class="world__name">Impresa</h3>
+        <p class="world__body">Protezione per responsabilità, immobili, macchinari, interruzioni e dati. Per capire quali eventi possono rallentare o fermare l’attività.</p>
+        <ul class="world__list">
+          <li>Responsabilità</li><li>Beni</li><li>Continuità</li><li>Cyber</li>
+        </ul>
+        <a class="linkish" href="servizi.html#impresa">Esplora l’area</a>
+      </article>
+
+      <article class="world">
+        <p class="world__tag">02 · Spostamenti</p>
+        <h3 class="world__name">Mobilità</h3>
+        <p class="world__body">Dall’RC Auto e Moto ai veicoli aziendali, ai mezzi d’opera e alle merci. Per valutare la circolazione e ciò che può accadere lungo il viaggio.</p>
+        <ul class="world__list"><li>RC Auto e Moto</li><li>Veicoli aziendali</li><li>Mezzi d’opera</li><li>Merci e vettori</li></ul>
+        <a class="linkish" href="servizi.html#mobilita">Esplora l’area</a>
+      </article>
+
+      <article class="world">
+        <p class="world__tag">03 · Patrimonio</p>
+        <h3 class="world__name">Casa</h3>
+        <p class="world__body">Protezione per fabbricato, contenuto, responsabilità e impianti. Per verificare se i valori dichiarati corrispondono a quelli reali.</p>
+        <ul class="world__list"><li>Fabbricato</li><li>Contenuto</li><li>Responsabilità</li><li>Impianti</li></ul>
+        <a class="linkish" href="servizi.html#casa">Esplora l’area</a>
+      </article>
+
+      <article class="world">
+        <p class="world__tag">04 · Futuro</p>
+        <h3 class="world__name">Persona</h3>
+        <p class="world__body">Protezione per capacità di lavorare, salute, famiglia e previdenza. Per misurare l’impatto economico di un cambiamento personale.</p>
+        <ul class="world__list"><li>Infortuni</li><li>Vita</li><li>Salute</li><li>Previdenza</li></ul>
+        <a class="linkish" href="servizi.html#persona">Esplora l’area</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROFILO ============================ -->
+<section class="profile" id="profilo">
+  <div class="wrap profile__inner">
+    <div class="profile__media">
+      <figure class="profile__photo">
+        <img src="assets/images/gennaro-viscardi.webp" width="1000" height="1250" loading="lazy" decoding="async" alt="Ritratto professionale di Gennaro Viscardi">
+      </figure>
+    </div>
+    <div class="profile__text">
+      <p class="sec-head__eyebrow">Chi sono</p>
+      <h2 class="sec-head__title">Gennaro Viscardi</h2>
+      <p>Professionista del settore assicurativo attivo nella provincia di Caserta. Seguo attività, professionisti e famiglie su esigenze che riguardano impresa, mobilità, casa e persona.</p>
+      <p>La sede fisica di Viscardi Assicurazioni è di prossima apertura. Nel frattempo i contatti vengono gestiti telefonicamente e online, con eventuali incontri concordati direttamente.</p>
+      <dl class="profile__data">
+        <div><dt>Area operativa</dt><dd>Provincia di Caserta</dd></div>
+        <div><dt>Sede fisica</dt><dd>Prossima apertura</dd></div>
+        <div><dt>Ricevimento</dt><dd>Solo previo contatto</dd></div>
+        <div><dt>Numero RUI</dt><dd>E000736639</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="faq" id="faq">
+  <div class="wrap faq__inner">
+    <header class="sec-head">
+      <h2 class="sec-head__title">Domande frequenti</h2>
+    </header>
+
+    <div class="acc" id="faqAcc">
+      <div class="acc__item">
+        <h3><button type="button" class="acc__btn" aria-expanded="false">Quanto costa la prima analisi?</button></h3>
+        <div class="acc__panel" hidden><p>Nulla. Il primo incontro serve a capire l'attività e a leggere le polizze esistenti. Se poi non c'è niente da cambiare, ve lo dico e finisce lì.</p></div>
+      </div>
+      <div class="acc__item">
+        <h3><button type="button" class="acc__btn" aria-expanded="false">Devo per forza cambiare compagnia?</button></h3>
+        <div class="acc__panel" hidden><p>No. Capita spesso che una polizza in essere vada bene e che il problema sia altrove, in una garanzia mancante o in una definizione da estendere. In quel caso si interviene solo su quella.</p></div>
+      </div>
+      <div class="acc__item">
+        <h3><button type="button" class="acc__btn" aria-expanded="false">Lavorate solo con le imprese?</button></h3>
+        <div class="acc__panel" hidden><p>No. Seguo attività, professionisti e privati: impresa, casa, mobilità, infortuni, salute e previdenza. Si parte sempre dalla situazione concreta del cliente, non da una categoria prestabilita.</p></div>
+      </div>
+      <div class="acc__item">
+        <h3><button type="button" class="acc__btn" aria-expanded="false">In caso di sinistro chi segue la pratica?</button></h3>
+        <div class="acc__panel" hidden><p>Io, insieme all'agenzia di riferimento e al perito incaricato dalla compagnia. La denuncia va fatta nei termini previsti dal contratto: è il primo punto dove si perdono indennizzi.</p></div>
+      </div>
+      <div class="acc__item">
+        <h3><button type="button" class="acc__btn" aria-expanded="false">Su quale zona vi muovete?</button></h3>
+        <div class="acc__panel" hidden><p>Opero nella provincia di Caserta. La sede fisica è di prossima apertura; per incontri e sopralluoghi è necessario concordare prima telefonicamente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTATTI ============================ -->
+<section class="contact" id="contatti">
+  <div class="wrap contact__inner">
+
+    <div class="contact__side">
+      <h2 class="sec-head__title">Parliamone</h2>
+      <p class="contact__lede">Il modo più rapido è una telefonata. Se preferite scrivere, indicate che tipo di attività avete e qual è il dubbio: rispondo con qualcosa di utile, non con un preventivo automatico.</p>
+
+      <ul class="contact__list">
+        <li><span>Cellulare 1</span><a href="tel:+393895555251">389 555 5251</a></li>
+        <li><span>Cellulare 2</span><a href="tel:+393920053353">392 005 3353</a></li>
+        <li><span>Email</span><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li>
+        <li><span>Sede fisica</span>Prossima apertura</li>
+        <li><span>Ricevimento</span>Solo previo contatto</li>
+      </ul>
+
+      <a class="btn btn--wa" href="https://wa.me/393895555251?text=Buongiorno%2C%20vorrei%20un%20confronto%20sulle%20coperture%20assicurative%20della%20mia%20azienda." target="_blank" rel="noopener">Scrivi su WhatsApp</a>
+    </div>
+
+    <div class="contact__form">
+      <form id="contactForm" novalidate>
+        <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field">
+          <label for="fNome">Nome e cognome</label>
+          <input type="text" id="fNome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="fAzienda">Azienda</label>
+          <input type="text" id="fAzienda" name="azienda" autocomplete="organization">
+        </div>
+        <div class="field field--half">
+          <label for="fSettore">Settore</label>
+          <select id="fSettore" name="settore">
+            <option value="">Seleziona</option>
+            <option>Edilizia</option>
+            <option>Industria e lavorazioni</option>
+            <option>Impiantistica</option>
+            <option>Autotrasporto e logistica</option>
+            <option>Studio tecnico</option>
+            <option>Privato</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <div class="field field--half">
+          <label for="fDip">Dipendenti</label>
+          <select id="fDip" name="dipendenti">
+            <option value="">Seleziona</option>
+            <option>Nessuno</option>
+            <option>1&ndash;5</option>
+            <option>6&ndash;15</option>
+            <option>16&ndash;50</option>
+            <option>Oltre 50</option>
+          </select>
+        </div>
+        <div class="field field--half">
+          <label for="fTel">Telefono</label>
+          <input type="tel" id="fTel" name="telefono" autocomplete="tel">
+        </div>
+        <div class="field field--half">
+          <label for="fMail">Email</label>
+          <input type="email" id="fMail" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="fMsg">Di cosa si tratta</label>
+          <textarea id="fMsg" name="messaggio" rows="5" required></textarea>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="fPriv" name="privacy" required>
+          <span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato.</span>
+        </label>
+
+        <button type="submit" id="contactSubmit" class="btn btn--solid btn--full">Invia la richiesta</button>
+        <p class="form__status" id="formStatus" role="status"></p>
+        <p class="form__note">La richiesta viene inoltrata direttamente all’indirizzo email di Gennaro.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Viscardi<br><span>Assicurazioni</span></p>
+      <p class="site-footer__claim">Il rischio non si vede. Si analizza.</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h2>Contatti</h2>
+      <ul>
+        <li>Sede fisica: prossima apertura</li>
+        <li><a href="tel:+393895555251">389 555 5251</a></li>
+        <li><a href="tel:+393920053353">392 005 3353</a></li>
+        <li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h2>Verifica</h2>
+      <ul>
+        <li>Numero RUI: E000736639</li>
+        <li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Consulta il Registro RUI &ndash; IVASS</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h2>Informazioni</h2>
+      <ul>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="cookie.html">Cookie policy</a></li>
+        <li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Verifica iscrizione RUI</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; <span id="year">2026</span> Viscardi Assicurazioni</p>
+      <p class="site-footer__marks">I marchi citati appartengono ai rispettivi titolari. Questo sito ha finalità informative e non costituisce offerta contrattuale né consulenza personalizzata ai sensi della normativa applicabile in materia di distribuzione assicurativa.</p>
+    </div>
+
+  </div>
+</footer>
+
+<a class="wa" id="waFab" href="https://wa.me/393895555251?text=Buongiorno%2C%20vorrei%20un%20confronto%20sulle%20coperture%20assicurative%20della%20mia%20azienda." target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.35c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.2-8.24 8.2Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.47-.01c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.9 2.4 1.02 2.57c.12.16 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+</a>
+
+<script src="script.js" defer></script>
+</body>
+</html>
