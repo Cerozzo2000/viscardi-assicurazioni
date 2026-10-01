@@ -56,7 +56,7 @@
       </aside>
 
       <div class="coverage-form-wrap">
-        <form id="coverageForm" action="/api/send-request" method="POST" novalidate>
+        <form id="coverageForm" action="/api/send-request" method="POST" enctype="multipart/form-data" novalidate>
           <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="_subject" value="Nuova richiesta copertura dal sito">
           <input type="hidden" name="_template" value="table">
@@ -68,6 +68,11 @@
             <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email"></div>
             <div class="field"><label for="cCity">Comune</label><input id="cCity" name="comune" autocomplete="address-level2"></div>
             <div class="field coverage-full"><label for="cNotes">Note o richieste particolari</label><textarea id="cNotes" name="note" rows="4"></textarea></div>
+          </div>
+          <div class="field coverage-full file-field">
+            <label for="cAttachments" id="coverageAttachmentLabel">Allegati</label>
+            <input type="file" id="cAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
+            <small id="coverageAttachmentHint">PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
           </div>
           <label class="check coverage-full"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e autorizzo il ricontatto.</span></label>
           <p class="form__status" id="coverageStatus" role="status"></p>

@@ -220,6 +220,11 @@
 .form__status.is-error{color:#a01421}
 .form__status.is-success{color:#12613c}
 .form__note{font-size:.7rem;color:rgba(7,17,31,.45)}
+.file-field{margin-top:8px;padding:18px!important;border:1px solid #c5ccd4!important;background:#f7f8fa}
+.file-field input[type="file"]{min-height:0!important;padding:10px!important;background:#fff!important;cursor:pointer}
+.file-field input[type="file"]::file-selector-button{margin-right:12px;border:0;background:var(--ink);color:#fff;padding:10px 14px;cursor:pointer}
+.file-field small{display:block;margin-top:4px;line-height:1.5;color:#667180}
+.file-field__optional{font-weight:400;text-transform:none;letter-spacing:0;color:#667180}
 #contactSubmit,#coverageSubmit,#sendRequest{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;min-height:54px;font-weight:600}
 #contactSubmit:hover,#coverageSubmit:hover,#sendRequest:hover{background:#9f1827!important;border-color:#9f1827!important}
 #contactSubmit:disabled,#coverageSubmit:disabled,#sendRequest:disabled{opacity:.68;cursor:wait}

@@ -577,7 +577,7 @@
     </div>
 
     <div class="contact__form">
-      <form id="contactForm" action="/api/send-request" method="POST" novalidate>
+      <form id="contactForm" action="/api/send-request" method="POST" enctype="multipart/form-data" novalidate>
         <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Nuova richiesta dal sito — Contatto generale">
         <input type="hidden" name="_template" value="table">
@@ -626,6 +626,12 @@
           <textarea id="fMsg" name="messaggio" rows="5" required></textarea>
         </div>
 
+        <div class="field file-field">
+          <label for="fAttachments">Allegati <span class="file-field__optional">(facoltativi)</span></label>
+          <input type="file" id="fAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
+          <small>PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
+        </div>
+
         <label class="check">
           <input type="checkbox" id="fPriv" name="privacy" required>
           <span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato.</span>
@@ -633,7 +639,7 @@
 
         <button type="submit" id="contactSubmit" class="btn btn--solid btn--full">Invia la richiesta</button>
         <p class="form__status" id="formStatus" role="status"></p>
-        <p class="form__note">La richiesta viene inoltrata direttamente all’indirizzo email di Gennaro.</p>
+        <p class="form__note">La richiesta e gli eventuali allegati vengono inoltrati direttamente all’indirizzo email di Gennaro.</p>
       </form>
     </div>
 

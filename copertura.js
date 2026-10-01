@@ -132,6 +132,13 @@
   var status = document.getElementById('coverageStatus');
   var submitButton = document.getElementById('coverageSubmit');
   var deliveryEndpoint = window.__FORM_ENDPOINT__ || '/api/send-request';
+  var attachmentInput = document.getElementById('cAttachments');
+  var vehicleDocumentRequired = ['rc-auto', 'rc-moto', 'flotte', 'mezzi-opera'].includes(serviceId || 'rc-auto');
+
+  attachmentInput.required = vehicleDocumentRequired;
+  document.getElementById('coverageAttachmentLabel').textContent = vehicleDocumentRequired ? 'Carta di circolazione' : 'Allegati (facoltativi)';
+  document.getElementById('coverageAttachmentHint').textContent = (vehicleDocumentRequired ? 'Obbligatoria per questa copertura. ' : '') + 'PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.';
+  attachmentInput.addEventListener('change', function () { window.ViscardiForms.validateAttachments(attachmentInput, vehicleDocumentRequired); });
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>'"]/g, function (char) {
@@ -169,9 +176,10 @@
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
-    if (!form.checkValidity()) {
+    var attachmentError = window.ViscardiForms.validateAttachments(attachmentInput, vehicleDocumentRequired);
+    if (!form.checkValidity() || attachmentError) {
       status.className = 'form__status is-error';
-      status.textContent = 'Completa tutti i campi richiesti e accetta l’informativa privacy.';
+      status.textContent = attachmentError || 'Completa tutti i campi richiesti e accetta l’informativa privacy.';
       form.reportValidity();
       return;
     }
@@ -184,15 +192,19 @@
     var lines = ['Richiesta dal sito — ' + service.title, 'Area: ' + service.area, ''];
     service.fields.forEach(function (item) { lines.push(labelFor(item.name) + ': ' + data.get(item.name)); });
     lines.push('', 'Nome e cognome: ' + data.get('nome'), 'Telefono: ' + data.get('telefono'), 'Email: ' + (data.get('email') || '-'), 'Comune: ' + (data.get('comune') || '-'), 'Note: ' + (data.get('note') || '-'));
-    var payload = { _subject: 'Nuova richiesta dal sito — ' + service.title, servizio: service.title, area: service.area, nome: data.get('nome'), telefono: data.get('telefono'), email: data.get('email') || 'Non indicata', comune: data.get('comune') || 'Non indicato', note: data.get('note') || 'Nessuna', riepilogo: lines.join('\n') };
-    service.fields.forEach(function (item) { payload[item.label] = data.get(item.name); });
+    data.delete('privacy');
+    data.set('_subject', 'Nuova richiesta dal sito — ' + service.title);
+    data.set('_attachment_required', vehicleDocumentRequired ? 'true' : 'false');
+    data.set('servizio', service.title);
+    data.set('area', service.area);
+    data.set('riepilogo', lines.join('\n'));
 
     submitButton.disabled = true;
     submitButton.textContent = 'Invio in corso…';
     status.className = 'form__status';
     status.textContent = '';
     try {
-      var response = await fetch(deliveryEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) });
+      var response = await fetch(deliveryEndpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: data });
       var responseData = await response.json().catch(function () { return {}; });
       if (!response.ok || responseData.success === false) throw new Error(responseData.message || 'Invio non riuscito');
       document.getElementById('coverageSummary').textContent = 'La richiesta per “' + service.title + '” è stata inviata all’indirizzo di Gennaro. Sarai ricontattato ai recapiti indicati.';
@@ -202,7 +214,7 @@
       window.ViscardiForms.showSuccessDialog('La richiesta per “' + service.title + '” è stata inviata correttamente. Grazie: Gennaro ti ricontatterà appena possibile.');
     } catch (error) {
       status.className = 'form__status is-error';
-      status.textContent = 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
+      status.textContent = error.message && error.message !== 'Failed to fetch' ? error.message : 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
       submitButton.disabled = false;
       submitButton.textContent = 'Riprova l’invio';
     }

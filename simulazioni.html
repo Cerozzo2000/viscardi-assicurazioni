@@ -29,7 +29,7 @@
     <aside class="sim-side"><p class="page-hero__eyebrow">Prima del preventivo</p><h2>Non è un prezzo automatico.</h2><p>Il simulatore evidenzia la priorità di approfondimento e prepara la richiesta. Garanzie, limiti ed esclusioni si definiscono solo dopo il confronto con Gennaro.</p><p class="sim-note">I dati restano nel browser finché non scegli di inviarli. Nessuna informazione viene salvata da questa pagina.</p></aside>
     <div class="sim-panel">
       <div class="sim-progress" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
-      <form id="riskSimulator" action="/api/send-request" method="POST" novalidate>
+      <form id="riskSimulator" action="/api/send-request" method="POST" enctype="multipart/form-data" novalidate>
         <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Nuova simulazione dal sito">
         <input type="hidden" name="_template" value="table">
@@ -65,6 +65,11 @@
             <div class="field"><label for="simPhone">Telefono</label><input id="simPhone" name="telefono" type="tel" autocomplete="tel" required></div>
             <div class="field"><label for="simEmail">Email</label><input id="simEmail" name="email" type="email" autocomplete="email"></div>
             <div class="field" style="grid-column:1/-1"><label for="simNotes">Note o dubbi</label><textarea id="simNotes" name="note" rows="4"></textarea></div>
+            <div class="field file-field" style="grid-column:1/-1">
+              <label for="simAttachments" id="simAttachmentLabel">Allegati</label>
+              <input type="file" id="simAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
+              <small id="simAttachmentHint">PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
+            </div>
           </div>
           <label class="check" style="margin-top:18px"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e autorizzo il ricontatto.</span></label>
           <p class="form__status" id="simStatus" role="status"></p>

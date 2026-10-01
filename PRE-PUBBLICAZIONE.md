@@ -32,6 +32,7 @@ Il sito non deve essere pubblicato finché i dati seguenti non sono stati confer
 
 - Destinatario delle richieste confermato: `viscardigennaro2001@gmail.com`
 - Configurare `RESEND_API_KEY` nelle variabili d’ambiente del progetto Vercel
+- Verificare l’arrivo di PDF, JPG e PNG allegati; limite applicativo: massimo 3 file e 3 MB complessivi
 - Valutare con il consulente privacy il ruolo di Vercel e Resend, i trasferimenti e i tempi di conservazione
 - Integrare dati completi del titolare e periodo di conservazione nell’informativa privacy
 - Riesaminare Cookie Policy e consenso se vengono aggiunti analytics, mappe, video, pixel o pubblicità

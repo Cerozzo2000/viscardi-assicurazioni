@@ -20,7 +20,21 @@
     $('[data-success-message]', dialog).textContent = message || 'La richiesta è stata inviata correttamente. Gennaro ti ricontatterà appena possibile.';
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
   }
-  window.ViscardiForms = { showSuccessDialog: showSuccessDialog };
+  function validateAttachments(input, required) {
+    if (!input) return '';
+    input.setCustomValidity('');
+    var files = Array.prototype.slice.call(input.files || []);
+    var allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+    var allowedExtension = /\.(pdf|jpe?g|png)$/i;
+    var message = '';
+    if (required && !files.length) message = 'Allega la carta di circolazione per continuare.';
+    else if (files.length > 3) message = 'Puoi allegare al massimo 3 file.';
+    else if (files.some(function (file) { return !allowedTypes.includes(file.type) || !allowedExtension.test(file.name); })) message = 'Sono ammessi soltanto file PDF, JPG e PNG.';
+    else if (files.reduce(function (total, file) { return total + file.size; }, 0) > 3 * 1024 * 1024) message = 'Gli allegati possono pesare al massimo 3 MB complessivi.';
+    input.setCustomValidity(message);
+    return message;
+  }
+  window.ViscardiForms = { showSuccessDialog: showSuccessDialog, validateAttachments: validateAttachments };
 
   var header = $('#siteHeader');
   var wa = $('#waFab');
@@ -207,22 +221,26 @@
       var email = form.elements.email.value.trim();
       var message = form.elements.messaggio.value.trim();
       var privacy = form.elements.privacy.checked;
-      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || !privacy) {
+      var attachmentError = validateAttachments(form.elements.allegati, false);
+      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || !privacy || attachmentError) {
         if (status) {
           status.className = 'form__status is-error';
-          status.textContent = 'Compila nome, email e messaggio e accetta l’informativa privacy.';
+          status.textContent = attachmentError || 'Compila nome, email e messaggio e accetta l’informativa privacy.';
         }
+        if (attachmentError) form.elements.allegati.reportValidity();
         return;
       }
       if (form.elements._honey && form.elements._honey.value) {
         form.reset();
         return;
       }
-      var payload = { _subject: 'Nuova richiesta dal sito — Contatto generale', nome: name, azienda: form.elements.azienda.value || 'Non indicata', settore: form.elements.settore.value || 'Non indicato', dipendenti: form.elements.dipendenti.value || 'Non indicati', telefono: form.elements.telefono.value || 'Non indicato', email: email, messaggio: message };
+      var payload = new FormData(form);
+      payload.delete('privacy');
+      payload.set('_subject', 'Nuova richiesta dal sito — Contatto generale');
       contactSubmit.disabled = true;
       contactSubmit.textContent = 'Invio in corso…';
       try {
-        var response = await fetch(requestEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) });
+        var response = await fetch(requestEndpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: payload });
         var responseData = await response.json().catch(function () { return {}; });
         if (!response.ok || responseData.success === false) throw new Error(responseData.message || 'Invio non riuscito');
         status.className = 'form__status is-success';
@@ -232,7 +250,7 @@
         showSuccessDialog('Grazie: la richiesta è stata inviata correttamente a Gennaro. Sarai ricontattato appena possibile.');
       } catch (error) {
         status.className = 'form__status is-error';
-        status.textContent = 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
+        status.textContent = error.message && error.message !== 'Failed to fetch' ? error.message : 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
         contactSubmit.disabled = false;
         contactSubmit.textContent = 'Riprova l’invio';
       }

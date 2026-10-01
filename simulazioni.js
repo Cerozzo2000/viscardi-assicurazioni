@@ -105,6 +105,18 @@
   var dynamicFields = document.getElementById('dynamicFields');
   var status = document.getElementById('simStatus');
   var requestEndpoint = window.__FORM_ENDPOINT__ || '/api/send-request';
+  var attachmentInput = document.getElementById('simAttachments');
+  var vehicleServices = ['rc_auto', 'rc_auto_furto_incendio', 'rc_moto'];
+
+  function updateAttachmentRequirement() {
+    var required = vehicleServices.includes(selectedService());
+    attachmentInput.required = required;
+    document.getElementById('simAttachmentLabel').textContent = required ? 'Carta di circolazione' : 'Allegati (facoltativi)';
+    document.getElementById('simAttachmentHint').textContent = (required ? 'Obbligatoria per questa simulazione. ' : '') + 'PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.';
+    window.ViscardiForms.validateAttachments(attachmentInput, required);
+    return required;
+  }
+  attachmentInput.addEventListener('change', updateAttachmentRequirement);
 
   function fieldMarkup(field) {
     var type = field[0], label = field[1], name = field[2], options = field[3];
@@ -159,6 +171,7 @@
     answers = { service: configs[service].label, details: details };
     result = { level: level, copy: copy };
     document.getElementById('simResult').innerHTML = '<strong>' + level + '</strong><p>' + copy + '</p>';
+    updateAttachmentRequirement();
     return true;
   }
 
@@ -178,9 +191,10 @@
   function buildMessage() {
     var name = form.elements.nome.value.trim();
     var phone = form.elements.telefono.value.trim();
-    if (!name || !phone || !form.elements.privacy.checked || !form.checkValidity()) {
+    var attachmentError = window.ViscardiForms.validateAttachments(attachmentInput, vehicleServices.includes(selectedService()));
+    if (!name || !phone || !form.elements.privacy.checked || !form.checkValidity() || attachmentError) {
       status.className = 'form__status is-error';
-      status.textContent = 'Completa correttamente nome, telefono ed eventuale email e accetta l’informativa privacy.';
+      status.textContent = attachmentError || 'Completa correttamente nome, telefono ed eventuale email e accetta l’informativa privacy.';
       form.reportValidity();
       return '';
     }
@@ -196,10 +210,17 @@
     button.disabled = true;
     button.textContent = 'Invio in corso…';
     try {
+      var payload = new FormData(form);
+      payload.delete('privacy');
+      payload.set('_subject', 'Nuova simulazione dal sito — ' + answers.service);
+      payload.set('_attachment_required', vehicleServices.includes(selectedService()) ? 'true' : 'false');
+      payload.set('servizio', answers.service);
+      payload.set('priorita_orientativa', result.level);
+      payload.set('riepilogo', message);
       var response = await fetch(requestEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ _subject: 'Nuova simulazione dal sito — ' + answers.service, servizio: answers.service, priorita_orientativa: result.level, nome: form.elements.nome.value.trim(), azienda: form.elements.azienda.value || 'Non indicata', telefono: form.elements.telefono.value.trim(), email: form.elements.email.value || 'Non indicata', note: form.elements.note.value || 'Nessuna', riepilogo: message })
+        headers: { 'Accept': 'application/json' },
+        body: payload
       });
       var responseData = await response.json().catch(function () { return {}; });
       if (!response.ok || responseData.success === false) throw new Error(responseData.message || 'Invio non riuscito');
@@ -209,7 +230,7 @@
       window.ViscardiForms.showSuccessDialog('La simulazione è stata inviata correttamente. Grazie per la richiesta: Gennaro ti ricontatterà appena possibile.');
     } catch (error) {
       status.className = 'form__status is-error';
-      status.textContent = 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
+      status.textContent = error.message && error.message !== 'Failed to fetch' ? error.message : 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
       button.disabled = false;
       button.textContent = 'Riprova l’invio';
     }
