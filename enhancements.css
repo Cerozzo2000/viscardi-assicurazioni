@@ -196,6 +196,15 @@
 .contact__list a{text-decoration:none;color:var(--white)}
 .contact__form{background:var(--white);color:var(--ink);padding:clamp(26px,4vw,48px)}
 #contactForm{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact-profile{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;border:0}
+.contact-profile legend{grid-column:1/-1;margin:0 0 1px;font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em;color:rgba(7,17,31,.64)}
+.contact-profile label{position:relative;cursor:pointer}
+.contact-profile input{position:absolute;opacity:0;pointer-events:none}
+.contact-profile span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 16px;border:2px solid #9aa5b1;background:#fff;color:var(--ink);font-weight:600;transition:border-color .2s,background .2s,color .2s}
+.contact-profile label:hover span{border-color:var(--red)}
+.contact-profile input:checked+span{border-color:var(--red);background:var(--red);color:#fff}
+.contact-profile input:focus-visible+span{outline:3px solid rgba(197,31,47,.22);outline-offset:2px}
+[data-company-field][hidden]{display:none!important}
 .field{grid-column:1/-1}
 .field--half{grid-column:auto}
 .field label{display:block;font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px;color:rgba(7,17,31,.64)}
@@ -221,8 +230,17 @@
 .form__status.is-success{color:#12613c}
 .form__note{font-size:.7rem;color:rgba(7,17,31,.45)}
 .file-field{margin-top:8px;padding:18px!important;border:1px solid #c5ccd4!important;background:#f7f8fa}
-.file-field input[type="file"]{min-height:0!important;padding:10px!important;background:#fff!important;cursor:pointer}
-.file-field input[type="file"]::file-selector-button{margin-right:12px;border:0;background:var(--ink);color:#fff;padding:10px 14px;cursor:pointer}
+.file-field__label{display:block;font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em;margin-bottom:9px;color:rgba(7,17,31,.64)}
+.file-picker{position:relative;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px 14px}
+.file-picker__input{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;opacity:0;overflow:hidden;pointer-events:none}
+.file-picker__button{display:inline-flex!important;align-items:center;justify-content:center;margin:0!important;padding:13px 20px!important;border:1px solid var(--red)!important;background:var(--red)!important;color:#fff!important;font:600 .82rem var(--sans)!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer;min-height:48px}
+.file-picker__button:hover{background:#9f1827!important;border-color:#9f1827!important}
+.file-picker__button:focus-within,.file-picker__input:focus+.file-picker__button{outline:3px solid rgba(197,31,47,.22);outline-offset:2px}
+.file-picker__count{font-size:.78rem;color:#596474}
+.file-picker__list{grid-column:1/-1;display:grid;gap:7px;margin:2px 0 0;padding:0;list-style:none}
+.file-picker__item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 11px;border:1px solid #d2d7dd;background:#fff;color:#243246;font-size:.76rem}
+.file-picker__name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-picker__remove{flex:0 0 auto;border:0;background:transparent;color:var(--red);font-weight:700;cursor:pointer;padding:4px 6px}
 .file-field small{display:block;margin-top:4px;line-height:1.5;color:#667180}
 .file-field__optional{font-weight:400;text-transform:none;letter-spacing:0;color:#667180}
 #contactSubmit,#coverageSubmit,#sendRequest{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important;min-height:54px;font-weight:600}

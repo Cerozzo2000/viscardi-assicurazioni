@@ -20,7 +20,7 @@ Il sito non deve essere pubblicato finché i dati seguenti non sono stati confer
 - Email lavorativa confermata: `viscardigennaro2001@gmail.com`
 - Cellulari confermati: `389 555 5251`, `392 005 3353`
 - Sede legale
-- Indirizzo della nuova sede, data di apertura e orari effettivi
+- Data di apertura e orari effettivi della sede in Viale Provinciale 222/224, Villa di Briano
 
 ## Compagnie e comunicazione online
 

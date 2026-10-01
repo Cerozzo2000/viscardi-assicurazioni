@@ -34,7 +34,75 @@
     input.setCustomValidity(message);
     return message;
   }
+  function formatFileSize(bytes) {
+    return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / (1024 * 1024)).toFixed(1).replace('.', ',') + ' MB';
+  }
+
+  function enhanceAttachmentInput(input) {
+    var picker = input.closest('.file-picker');
+    if (!picker) return;
+    var count = $('[data-file-count]', picker);
+    var list = $('[data-file-list]', picker);
+    var selectedFiles = [];
+
+    function syncInput() {
+      if (typeof DataTransfer !== 'undefined') {
+        var transfer = new DataTransfer();
+        selectedFiles.forEach(function (file) { transfer.items.add(file); });
+        input.files = transfer.files;
+      }
+    }
+
+    function render(limitReached) {
+      count.textContent = selectedFiles.length ? selectedFiles.length + (selectedFiles.length === 1 ? ' file allegato' : ' file allegati') + (limitReached ? ' — limite di 3 raggiunto' : '') : 'Nessun file allegato';
+      list.replaceChildren();
+      selectedFiles.forEach(function (file, index) {
+        var item = document.createElement('li');
+        item.className = 'file-picker__item';
+        var name = document.createElement('span');
+        name.className = 'file-picker__name';
+        name.textContent = file.name + ' · ' + formatFileSize(file.size);
+        var remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'file-picker__remove';
+        remove.dataset.removeFile = String(index);
+        remove.setAttribute('aria-label', 'Rimuovi ' + file.name);
+        remove.textContent = 'Rimuovi';
+        item.append(name, remove);
+        list.appendChild(item);
+      });
+    }
+
+    input.addEventListener('change', function () {
+      var incoming = Array.prototype.slice.call(input.files || []);
+      var limitReached = false;
+      incoming.forEach(function (file) {
+        var duplicate = selectedFiles.some(function (saved) { return saved.name === file.name && saved.size === file.size && saved.lastModified === file.lastModified; });
+        if (duplicate) return;
+        if (selectedFiles.length >= 3) { limitReached = true; return; }
+        selectedFiles.push(file);
+      });
+      syncInput();
+      validateAttachments(input, input.required);
+      render(limitReached);
+    });
+
+    list.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-remove-file]');
+      if (!button) return;
+      selectedFiles.splice(Number(button.dataset.removeFile), 1);
+      syncInput();
+      validateAttachments(input, input.required);
+      render(false);
+    });
+
+    if (input.form) input.form.addEventListener('reset', function () {
+      setTimeout(function () { selectedFiles = []; syncInput(); render(false); }, 0);
+    });
+    render(false);
+  }
   window.ViscardiForms = { showSuccessDialog: showSuccessDialog, validateAttachments: validateAttachments };
+  $$('.file-picker__input').forEach(enhanceAttachmentInput);
 
   var header = $('#siteHeader');
   var wa = $('#waFab');
@@ -215,19 +283,70 @@
   var contactSubmit = $('#contactSubmit');
   var requestEndpoint = window.__FORM_ENDPOINT__ || '/api/send-request';
   if (form) {
+    var serviceSelect = $('#fServizio', form);
+    var attachmentInput = $('#fAttachments', form);
+    var attachmentLabel = $('#fAttachmentsLabel', form);
+    var attachmentHint = $('#fAttachmentsHint', form);
+    var companyFields = $$('[data-company-field]', form);
+    var servicesByProfile = {
+      Azienda: ['Responsabilità civile', 'Opere e cantieri', 'Fabbricati e macchinari', 'Interruzione di attività', 'Amministratori e dirigenti', 'Cyber risk', 'Veicoli aziendali', 'Macchine in cantiere', 'Merci in viaggio', 'Responsabilità del vettore'],
+      Privato: ['RC Auto', 'RCA + Furto e Incendio', 'RC Moto', 'Fabbricato e contenuto', 'Responsabilità del proprietario', 'Impianti fotovoltaici', 'Capacità di lavorare', 'Temporanea caso morte', 'Cure e assistenza', 'Progetto di lungo periodo']
+    };
+    var vehicleContactServices = ['RC Auto', 'RCA + Furto e Incendio', 'RC Moto', 'Veicoli aziendali', 'Macchine in cantiere'];
+    var contactAttachmentRequired = false;
+
+    function updateContactAttachment() {
+      contactAttachmentRequired = vehicleContactServices.includes(serviceSelect.value);
+      attachmentInput.required = contactAttachmentRequired;
+      attachmentLabel.textContent = contactAttachmentRequired ? 'Carta di circolazione' : 'Allegati (facoltativi)';
+      attachmentHint.textContent = (contactAttachmentRequired ? 'Obbligatoria per questo servizio. ' : '') + 'PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.';
+      validateAttachments(attachmentInput, contactAttachmentRequired);
+    }
+
+    function renderContactServices(profile) {
+      serviceSelect.replaceChildren();
+      var placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Seleziona il servizio';
+      serviceSelect.appendChild(placeholder);
+      servicesByProfile[profile].forEach(function (service) {
+        var option = document.createElement('option');
+        option.value = service;
+        option.textContent = service;
+        serviceSelect.appendChild(option);
+      });
+      updateContactAttachment();
+    }
+
+    function updateContactProfile() {
+      var profile = form.elements.profilo.value || 'Azienda';
+      var isCompany = profile === 'Azienda';
+      companyFields.forEach(function (field) {
+        field.hidden = !isCompany;
+        $$('input,select,textarea', field).forEach(function (control) { control.disabled = !isCompany; });
+      });
+      form.elements.azienda.required = isCompany;
+      renderContactServices(profile);
+    }
+
+    $$('input[name="profilo"]', form).forEach(function (radio) { radio.addEventListener('change', updateContactProfile); });
+    serviceSelect.addEventListener('change', updateContactAttachment);
+    form.addEventListener('reset', function () { setTimeout(updateContactProfile, 0); });
+    updateContactProfile();
+
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       var name = form.elements.nome.value.trim();
       var email = form.elements.email.value.trim();
       var message = form.elements.messaggio.value.trim();
       var privacy = form.elements.privacy.checked;
-      var attachmentError = validateAttachments(form.elements.allegati, false);
-      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || !privacy || attachmentError) {
+      var attachmentError = validateAttachments(form.elements.allegati, contactAttachmentRequired);
+      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || !privacy || attachmentError || !form.checkValidity()) {
         if (status) {
           status.className = 'form__status is-error';
-          status.textContent = attachmentError || 'Compila nome, email e messaggio e accetta l’informativa privacy.';
+          status.textContent = attachmentError || 'Completa i campi obbligatori, seleziona il servizio e accetta l’informativa privacy.';
         }
-        if (attachmentError) form.elements.allegati.reportValidity();
+        form.reportValidity();
         return;
       }
       if (form.elements._honey && form.elements._honey.value) {
@@ -236,7 +355,8 @@
       }
       var payload = new FormData(form);
       payload.delete('privacy');
-      payload.set('_subject', 'Nuova richiesta dal sito — Contatto generale');
+      payload.set('_subject', 'Nuova richiesta ' + form.elements.profilo.value + ' — ' + form.elements.servizio.value);
+      payload.set('_attachment_required', contactAttachmentRequired ? 'true' : 'false');
       contactSubmit.disabled = true;
       contactSubmit.textContent = 'Invio in corso…';
       try {

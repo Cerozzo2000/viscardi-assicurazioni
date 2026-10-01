@@ -66,8 +66,13 @@
             <div class="field"><label for="simEmail">Email</label><input id="simEmail" name="email" type="email" autocomplete="email"></div>
             <div class="field" style="grid-column:1/-1"><label for="simNotes">Note o dubbi</label><textarea id="simNotes" name="note" rows="4"></textarea></div>
             <div class="field file-field" style="grid-column:1/-1">
-              <label for="simAttachments" id="simAttachmentLabel">Allegati</label>
-              <input type="file" id="simAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
+              <span class="file-field__label" id="simAttachmentLabel">Allegati</span>
+              <div class="file-picker">
+                <input class="file-picker__input" type="file" id="simAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-labelledby="simAttachmentLabel" multiple>
+                <label class="file-picker__button" for="simAttachments">Allega file</label>
+                <span class="file-picker__count" data-file-count>Nessun file allegato</span>
+                <ul class="file-picker__list" data-file-list aria-live="polite"></ul>
+              </div>
               <small id="simAttachmentHint">PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
             </div>
           </div>
@@ -81,7 +86,7 @@
   </section>
 </main>
 
-<footer class="site-footer"><div class="wrap site-footer__inner"><div class="site-footer__brand"><p class="site-footer__name">Viscardi<br><span>Assicurazioni</span></p><p class="site-footer__claim">Il rischio non si vede. Si analizza.</p></div><div class="site-footer__col"><h2>Contatti</h2><ul><li>Sede fisica: prossima apertura</li><li><a href="tel:+393895555251">389 555 5251</a></li><li><a href="tel:+393920053353">392 005 3353</a></li><li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li></ul></div><div class="site-footer__col"><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="simulazioni.html">Simulazioni</a></li></ul></div><div class="site-footer__col"><h2>Informazioni</h2><ul><li>Numero RUI: E000736639</li><li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Verifica iscrizione RUI</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="cookie.html">Cookie policy</a></li></ul></div><div class="site-footer__bottom"><p>© <span id="year">2026</span> Viscardi Assicurazioni</p><p class="site-footer__marks">La simulazione ha finalità orientativa e non costituisce preventivo o proposta contrattuale.</p></div></div></footer>
+<footer class="site-footer"><div class="wrap site-footer__inner"><div class="site-footer__brand"><p class="site-footer__name">Viscardi<br><span>Assicurazioni</span></p><p class="site-footer__claim">Il rischio non si vede. Si analizza.</p></div><div class="site-footer__col"><h2>Contatti</h2><ul><li>Viale Provinciale 222/224, Villa di Briano</li><li><a href="tel:+393895555251">389 555 5251</a></li><li><a href="tel:+393920053353">392 005 3353</a></li><li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li></ul></div><div class="site-footer__col"><h2>Pagine</h2><ul><li><a href="index.html">Home</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="simulazioni.html">Simulazioni</a></li></ul></div><div class="site-footer__col"><h2>Informazioni</h2><ul><li>Numero RUI: E000736639</li><li><a href="https://ruipubblico.ivass.it/rui-pubblica/ng/#/home" target="_blank" rel="noopener">Verifica iscrizione RUI</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="cookie.html">Cookie policy</a></li></ul></div><div class="site-footer__bottom"><p>© <span id="year">2026</span> Viscardi Assicurazioni</p><p class="site-footer__marks">La simulazione ha finalità orientativa e non costituisce preventivo o proposta contrattuale.</p></div></div></footer>
 <script src="script.js" defer></script>
 <script src="simulazioni.js" defer></script>
 </body>

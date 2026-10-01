@@ -30,6 +30,12 @@
   "url": "https://www.gennaroviscardiassicurazioni.it/",
   "telephone": ["+39 389 555 5251", "+39 392 005 3353"],
   "email": "viscardigennaro2001@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Viale Provinciale 222/224",
+    "addressLocality": "Villa di Briano",
+    "addressCountry": "IT"
+  },
   "areaServed": ["Provincia di Caserta", "Campania"]
 }
 </script>
@@ -516,10 +522,10 @@
       <p class="sec-head__eyebrow">Chi sono</p>
       <h2 class="sec-head__title">Gennaro Viscardi</h2>
       <p>Professionista del settore assicurativo attivo nella provincia di Caserta. Seguo attività, professionisti e famiglie su esigenze che riguardano impresa, mobilità, casa e persona.</p>
-      <p>La sede fisica di Viscardi Assicurazioni è di prossima apertura. Nel frattempo i contatti vengono gestiti telefonicamente e online, con eventuali incontri concordati direttamente.</p>
+      <p>La sede fisica di Viscardi Assicurazioni si trova in Viale Provinciale 222/224, Villa di Briano. Per incontri e consulenze è consigliato concordare prima telefonicamente.</p>
       <dl class="profile__data">
         <div><dt>Area operativa</dt><dd>Provincia di Caserta</dd></div>
-        <div><dt>Sede fisica</dt><dd>Prossima apertura</dd></div>
+        <div><dt>Sede fisica</dt><dd>Viale Provinciale 222/224, Villa di Briano</dd></div>
         <div><dt>Numero RUI</dt><dd>E000736639</dd></div>
       </dl>
     </div>
@@ -552,7 +558,7 @@
       </div>
       <div class="acc__item">
         <h3><button type="button" class="acc__btn" aria-expanded="false">Su quale zona vi muovete?</button></h3>
-        <div class="acc__panel" hidden><p>Opero nella provincia di Caserta. La sede fisica è di prossima apertura; per incontri e sopralluoghi è necessario concordare prima telefonicamente.</p></div>
+        <div class="acc__panel" hidden><p>Opero nella provincia di Caserta. La sede fisica è in Viale Provinciale 222/224, Villa di Briano; per incontri e sopralluoghi è consigliato concordare prima telefonicamente.</p></div>
       </div>
     </div>
   </div>
@@ -570,7 +576,7 @@
         <li><span>Cellulare 1</span><a href="tel:+393895555251">389 555 5251</a></li>
         <li><span>Cellulare 2</span><a href="tel:+393920053353">392 005 3353</a></li>
         <li><span>Email</span><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li>
-        <li><span>Sede fisica</span>Prossima apertura</li>
+        <li><span>Sede fisica</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale%20Provinciale%20222%2F224%2C%20Villa%20di%20Briano" target="_blank" rel="noopener">Viale Provinciale 222/224, Villa di Briano</a></li>
       </ul>
 
       <a class="btn btn--wa" href="https://wa.me/393895555251?text=Buongiorno%2C%20vorrei%20un%20confronto%20sulle%20coperture%20assicurative%20della%20mia%20azienda." target="_blank" rel="noopener">Scrivi su WhatsApp</a>
@@ -581,15 +587,36 @@
         <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Nuova richiesta dal sito — Contatto generale">
         <input type="hidden" name="_template" value="table">
+        <fieldset class="contact-profile">
+          <legend>Seleziona il profilo</legend>
+          <label><input type="radio" name="profilo" value="Azienda" checked><span>Azienda</span></label>
+          <label><input type="radio" name="profilo" value="Privato"><span>Privato</span></label>
+        </fieldset>
+        <div class="field">
+          <label for="fServizio">Servizio di interesse</label>
+          <select id="fServizio" name="servizio" required>
+            <option value="">Seleziona il servizio</option>
+            <option>Responsabilità civile</option>
+            <option>Opere e cantieri</option>
+            <option>Fabbricati e macchinari</option>
+            <option>Interruzione di attività</option>
+            <option>Amministratori e dirigenti</option>
+            <option>Cyber risk</option>
+            <option>Veicoli aziendali</option>
+            <option>Macchine in cantiere</option>
+            <option>Merci in viaggio</option>
+            <option>Responsabilità del vettore</option>
+          </select>
+        </div>
         <div class="field">
           <label for="fNome">Nome e cognome</label>
           <input type="text" id="fNome" name="nome" autocomplete="name" required>
         </div>
-        <div class="field">
+        <div class="field" data-company-field>
           <label for="fAzienda">Azienda</label>
-          <input type="text" id="fAzienda" name="azienda" autocomplete="organization">
+          <input type="text" id="fAzienda" name="azienda" autocomplete="organization" required>
         </div>
-        <div class="field field--half">
+        <div class="field field--half" data-company-field>
           <label for="fSettore">Settore</label>
           <select id="fSettore" name="settore">
             <option value="">Seleziona</option>
@@ -602,7 +629,7 @@
             <option>Altro</option>
           </select>
         </div>
-        <div class="field field--half">
+        <div class="field field--half" data-company-field>
           <label for="fDip">Dipendenti</label>
           <select id="fDip" name="dipendenti">
             <option value="">Seleziona</option>
@@ -627,9 +654,14 @@
         </div>
 
         <div class="field file-field">
-          <label for="fAttachments">Allegati <span class="file-field__optional">(facoltativi)</span></label>
-          <input type="file" id="fAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
-          <small>PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
+          <span class="file-field__label" id="fAttachmentsLabel">Allegati <span class="file-field__optional">(facoltativi)</span></span>
+          <div class="file-picker">
+            <input class="file-picker__input" type="file" id="fAttachments" name="allegati" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-labelledby="fAttachmentsLabel" multiple>
+            <label class="file-picker__button" for="fAttachments">Allega file</label>
+            <span class="file-picker__count" data-file-count>Nessun file allegato</span>
+            <ul class="file-picker__list" data-file-list aria-live="polite"></ul>
+          </div>
+          <small id="fAttachmentsHint">PDF, JPG o PNG. Massimo 3 file e 3 MB complessivi.</small>
         </div>
 
         <label class="check">
@@ -660,7 +692,7 @@
     <div class="site-footer__col">
       <h2>Contatti</h2>
       <ul>
-        <li>Sede fisica: prossima apertura</li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viale%20Provinciale%20222%2F224%2C%20Villa%20di%20Briano" target="_blank" rel="noopener">Viale Provinciale 222/224, Villa di Briano</a></li>
         <li><a href="tel:+393895555251">389 555 5251</a></li>
         <li><a href="tel:+393920053353">392 005 3353</a></li>
         <li><a href="mailto:viscardigennaro2001@gmail.com">viscardigennaro2001@gmail.com</a></li>
