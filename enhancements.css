@@ -224,6 +224,7 @@
 .field textarea{resize:vertical}
 .check{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;font-size:.78rem;color:rgba(7,17,31,.62)}
 .check input{margin-top:4px;accent-color:var(--red)}
+.contact__form .check a,.sim-panel .check a{color:#002b6e;font-weight:600;text-decoration:underline;text-underline-offset:2px}
 #contactForm>.btn,#contactForm>.form__status,#contactForm>.form__note{grid-column:1/-1}
 .form__status{margin:0;font-size:.84rem}
 .form__status.is-error{color:#a01421}
@@ -247,8 +248,11 @@
 #contactSubmit:hover,#coverageSubmit:hover,#sendRequest:hover{background:#9f1827!important;border-color:#9f1827!important}
 #contactSubmit:disabled,#coverageSubmit:disabled,#sendRequest:disabled{opacity:.68;cursor:wait}
 
-.success-dialog{width:min(520px,calc(100% - 32px));padding:0;border:0;background:transparent;color:var(--ink)}
-.success-dialog::backdrop{background:rgba(3,10,20,.78);backdrop-filter:blur(4px)}
+.success-dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:0;background:transparent;color:var(--ink);overflow:auto}
+.success-dialog::backdrop{background:rgba(3,10,20,.78)}
+.has-success-dialog{overflow:hidden}
+.success-dialog.is-fallback[open]{position:fixed;inset:0;z-index:9999;display:grid;box-sizing:border-box;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:16px;place-items:center;background:rgba(3,10,20,.82)}
+.success-dialog.is-fallback .success-dialog__card{width:min(520px,100%);max-height:calc(100dvh - 32px);overflow:auto}
 .success-dialog__card{position:relative;background:#fff;padding:clamp(32px,6vw,54px);border-top:5px solid var(--red);box-shadow:0 30px 90px rgba(0,0,0,.3);text-align:center}
 .success-dialog__icon{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 22px;border-radius:50%;background:#e9f6ef;color:#12613c;font-size:1.7rem;font-weight:700}
 .success-dialog h2{font-family:var(--serif);font-size:clamp(2rem,6vw,3rem);line-height:1;margin:0 0 14px}
@@ -478,10 +482,11 @@
 .coverage-page{background:#f4f1eb;color:#101a2a}
 .coverage-page .site-header{background:#001c4b;border-bottom:1px solid rgba(255,255,255,.16)}
 .coverage-hero{padding:clamp(138px,15vw,190px) 0 clamp(64px,8vw,104px);color:#fff;background:linear-gradient(135deg,#061325 0%,#001c4b 66%,#072a63 100%)}
-.coverage-hero__grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(420px,1.12fr);gap:clamp(42px,7vw,108px);align-items:center}
+.coverage-hero__grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);gap:clamp(42px,5vw,78px);align-items:center}
+.coverage-hero__copy,.coverage-hero__media{min-width:0}
 .coverage-back{display:inline-flex;margin-bottom:42px;color:rgba(255,255,255,.68);font:500 .72rem var(--mono);letter-spacing:.06em;text-decoration:none;text-transform:uppercase}
 .coverage-back:hover{color:#fff}
-.coverage-hero h1{max-width:11ch;margin:.12em 0 .3em;font:400 clamp(3.8rem,7.2vw,7.2rem)/.88 var(--serif);letter-spacing:-.045em}
+.coverage-hero h1{max-width:100%;margin:.12em 0 .3em;font:400 clamp(3.35rem,5vw,5.4rem)/.9 var(--serif);letter-spacing:-.04em;overflow-wrap:normal;word-break:normal}
 .coverage-hero__lead{max-width:51ch;margin:0;color:rgba(255,255,255,.75);font-size:clamp(1rem,1.35vw,1.18rem);line-height:1.7}
 .coverage-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:34px}
 .coverage-tags span{padding:8px 12px;border:1px solid rgba(255,255,255,.22);font:500 .62rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.76)}

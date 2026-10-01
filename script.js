@@ -4,6 +4,13 @@
   var $ = function (selector, context) { return (context || document).querySelector(selector); };
   var $$ = function (selector, context) { return Array.prototype.slice.call((context || document).querySelectorAll(selector)); };
 
+  function closeSuccessDialog(dialog) {
+    if (typeof dialog.close === 'function' && dialog.open) dialog.close();
+    else dialog.removeAttribute('open');
+    dialog.classList.remove('is-fallback');
+    document.documentElement.classList.remove('has-success-dialog');
+  }
+
   function showSuccessDialog(message) {
     var dialog = document.getElementById('requestSuccessDialog');
     if (!dialog) {
@@ -11,14 +18,22 @@
       dialog.id = 'requestSuccessDialog';
       dialog.className = 'success-dialog';
       dialog.setAttribute('aria-labelledby', 'requestSuccessTitle');
+      dialog.setAttribute('aria-modal', 'true');
       dialog.innerHTML = '<div class="success-dialog__card"><button class="success-dialog__x" type="button" aria-label="Chiudi">×</button><span class="success-dialog__icon" aria-hidden="true">✓</span><h2 id="requestSuccessTitle">Richiesta inviata</h2><p data-success-message></p><button class="success-dialog__close" type="button">Chiudi</button></div>';
       document.body.appendChild(dialog);
       dialog.addEventListener('click', function (event) {
-        if (event.target === dialog || event.target.closest('.success-dialog__close,.success-dialog__x')) dialog.close();
+        if (event.target === dialog || event.target.closest('.success-dialog__close,.success-dialog__x')) closeSuccessDialog(dialog);
+      });
+      dialog.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') { event.preventDefault(); closeSuccessDialog(dialog); }
       });
     }
     $('[data-success-message]', dialog).textContent = message || 'La richiesta è stata inviata correttamente. Gennaro ti ricontatterà appena possibile.';
-    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
+    dialog.classList.add('is-fallback');
+    dialog.setAttribute('open', '');
+    document.documentElement.classList.add('has-success-dialog');
+    var closeButton = $('.success-dialog__close', dialog);
+    if (closeButton) closeButton.focus();
   }
   function validateAttachments(input, required) {
     if (!input) return '';
