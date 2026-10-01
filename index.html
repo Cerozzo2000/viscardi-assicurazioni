@@ -7,6 +7,10 @@
 <meta name="description" content="Analisi personalizzata delle coperture per attività, mobilità, casa e persona nella provincia di Caserta.">
 <link rel="canonical" href="https://www.gennaroviscardiassicurazioni.it/">
 <meta name="theme-color" content="#07111F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Viscardi">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:title" content="Viscardi Assicurazioni — Il rischio non si vede. Si analizza.">
@@ -16,6 +20,8 @@
 <meta property="og:image" content="https://www.gennaroviscardiassicurazioni.it/assets/images/edilizia.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
@@ -114,6 +120,7 @@
         <a class="btn btn--solid" href="#contatti">Richiedi un'analisi</a>
         <a class="btn btn--ghost" href="servizi.html">Esplora tutti i servizi</a>
         <a class="btn btn--whatsapp hero__whatsapp" href="https://wa.me/393895555251?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20sulle%20coperture%20assicurative." target="_blank" rel="noopener" aria-label="Contatta Gennaro su WhatsApp">WhatsApp</a>
+        <button class="btn btn--ghost app-install" id="appInstall" type="button" hidden>Installa l’app</button>
       </div>
 
     </div>
@@ -729,5 +736,6 @@
 </a>
 
 <script src="script.js" defer></script>
+<script src="pwa.js" defer></script>
 </body>
 </html>
