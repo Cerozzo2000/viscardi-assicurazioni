@@ -131,7 +131,6 @@
   var result = document.getElementById('coverageResult');
   var status = document.getElementById('coverageStatus');
   var submitButton = document.getElementById('coverageSubmit');
-  var deliveryEndpoint = 'https://formsubmit.co/ajax/viscardigennaro2001@gmail.com';
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>'"]/g, function (char) {
@@ -184,43 +183,14 @@
     var lines = ['Richiesta dal sito — ' + service.title, 'Area: ' + service.area, ''];
     service.fields.forEach(function (item) { lines.push(labelFor(item.name) + ': ' + data.get(item.name)); });
     lines.push('', 'Nome e cognome: ' + data.get('nome'), 'Telefono: ' + data.get('telefono'), 'Email: ' + (data.get('email') || '-'), 'Comune: ' + (data.get('comune') || '-'), 'Note: ' + (data.get('note') || '-'));
-    var payload = {
-      _subject: 'Nuova richiesta dal sito — ' + service.title,
-      _template: 'table',
-      servizio: service.title,
-      area: service.area,
-      nome: data.get('nome'),
-      telefono: data.get('telefono'),
-      email: data.get('email') || 'Non indicata',
-      comune: data.get('comune') || 'Non indicato',
-      note: data.get('note') || 'Nessuna',
-      riepilogo: lines.join('\n')
-    };
-    service.fields.forEach(function (item) { payload[item.label] = data.get(item.name); });
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Invio in corso…';
     status.className = 'form__status';
     status.textContent = '';
-    try {
-      if (window.location.protocol === 'file:' && !window.__ALLOW_LOCAL_FORM_TESTS__) throw new Error('LOCAL_PREVIEW');
-      var response = await fetch(deliveryEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      var responseData = await response.json().catch(function () { return {}; });
-      if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error(responseData.message || 'Invio non riuscito');
-      document.getElementById('coverageSummary').textContent = 'La richiesta per “' + service.title + '” è stata consegnata all’indirizzo lavorativo di Gennaro. Sarai ricontattato ai recapiti indicati.';
-      form.hidden = true;
-      result.hidden = false;
-      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      if (window.ViscardiForms) window.ViscardiForms.showSuccessDialog('La richiesta per “' + service.title + '” è stata inviata correttamente. Grazie: Gennaro ti ricontatterà appena possibile.');
-    } catch (error) {
-      status.className = 'form__status is-error';
-      status.textContent = error.message === 'LOCAL_PREVIEW' ? 'L’invio email funziona dal sito pubblicato, non dall’anteprima locale. Apri il sito su Vercel e riprova.' : 'Invio non completato. Controlla la casella email di Gennaro per l’attivazione FormSubmit, quindi riprova.';
-      submitButton.disabled = false;
-      submitButton.textContent = 'Riprova l’invio';
-    }
+    window.ViscardiForms.openPreparedEmail('Richiesta dal sito — ' + service.title, lines.join('\n'));
+    status.className = 'form__status is-success';
+    status.textContent = 'Email preparata: controllala nella tua app di posta e premi Invia.';
+    document.getElementById('coverageSummary').textContent = 'L’email per “' + service.title + '” è pronta. Controllala nella tua app di posta e premi Invia per completare la richiesta.';
+    result.hidden = false;
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    window.ViscardiForms.showSuccessDialog('Abbiamo preparato l’email per “' + service.title + '”. Controllala nella tua app di posta e premi Invia.');
   });
 })();

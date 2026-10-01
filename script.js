@@ -20,7 +20,12 @@
     $('[data-success-message]', dialog).textContent = message || 'La richiesta è stata inviata correttamente. Gennaro ti ricontatterà appena possibile.';
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
   }
-  window.ViscardiForms = { showSuccessDialog: showSuccessDialog };
+  function openPreparedEmail(subject, body) {
+    var href = 'mailto:viscardigennaro2001@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    if (typeof window.__MAILTO_TEST_HOOK__ === 'function') window.__MAILTO_TEST_HOOK__(href);
+    else window.location.href = href;
+  }
+  window.ViscardiForms = { showSuccessDialog: showSuccessDialog, openPreparedEmail: openPreparedEmail };
 
   var header = $('#siteHeader');
   var wa = $('#waFab');
@@ -200,7 +205,7 @@
   var status = $('#formStatus');
   var contactSubmit = $('#contactSubmit');
   if (form) {
-    form.addEventListener('submit', async function (event) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault();
       var name = form.elements.nome.value.trim();
       var email = form.elements.email.value.trim();
@@ -217,39 +222,20 @@
         form.reset();
         return;
       }
-      var payload = {
-        _subject: 'Nuova richiesta dal sito — Contatto generale',
-        _template: 'table',
-        nome: name,
-        azienda: form.elements.azienda.value || 'Non indicata',
-        settore: form.elements.settore.value || 'Non indicato',
-        dipendenti: form.elements.dipendenti.value || 'Non indicati',
-        telefono: form.elements.telefono.value || 'Non indicato',
-        email: email,
-        messaggio: message
-      };
-      contactSubmit.disabled = true;
-      contactSubmit.textContent = 'Invio in corso…';
-      try {
-        if (window.location.protocol === 'file:' && !window.__ALLOW_LOCAL_FORM_TESTS__) throw new Error('LOCAL_PREVIEW');
-        var response = await fetch('https://formsubmit.co/ajax/viscardigennaro2001@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        var responseData = await response.json().catch(function () { return {}; });
-        if (!response.ok || responseData.success === false || responseData.success === 'false') throw new Error(responseData.message || 'Invio non riuscito');
-        status.className = 'form__status is-success';
-        status.textContent = 'Richiesta inviata correttamente. Gennaro la riceverà direttamente via email.';
-        form.reset();
-        contactSubmit.textContent = 'Richiesta inviata';
-        showSuccessDialog('La richiesta è stata inviata correttamente. Grazie per averci contattato: Gennaro ti ricontatterà appena possibile.');
-      } catch (error) {
-        status.className = 'form__status is-error';
-        status.textContent = error.message === 'LOCAL_PREVIEW' ? 'L’invio email funziona dal sito pubblicato, non dall’anteprima locale. Apri il sito su Vercel e riprova.' : 'Invio non completato. Controlla la casella email di Gennaro per l’attivazione FormSubmit, quindi riprova.';
-        contactSubmit.disabled = false;
-        contactSubmit.textContent = 'Riprova l’invio';
-      }
+      var body = [
+        'Buongiorno Gennaro, vorrei richiedere informazioni.', '',
+        'Nome e cognome: ' + name,
+        'Azienda: ' + (form.elements.azienda.value || '-'),
+        'Settore: ' + (form.elements.settore.value || '-'),
+        'Dipendenti: ' + (form.elements.dipendenti.value || '-'),
+        'Telefono: ' + (form.elements.telefono.value || '-'),
+        'Email: ' + email, '',
+        'Richiesta:', message
+      ].join('\n');
+      openPreparedEmail('Richiesta dal sito — ' + name, body);
+      status.className = 'form__status is-success';
+      status.textContent = 'Email preparata: controllala nella tua app di posta e premi Invia.';
+      showSuccessDialog('Abbiamo preparato l’email. Controllala nella tua app di posta e premi Invia per completare la richiesta.');
     });
   }
 
