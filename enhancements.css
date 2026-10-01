@@ -40,9 +40,6 @@
 .hero__kicker,.hero__title,.hero__lede,.hero__cta,.readout{opacity:1;color:inherit}
 .hero__lede{font-size:clamp(1rem,1.25vw,1.13rem);color:var(--on-dark-2);max-width:58ch;margin:26px 0 0}
 .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.app-install{border-color:rgba(255,255,255,.62);background:rgba(255,255,255,.08);color:#fff;cursor:pointer}
-.app-install:hover{border-color:#fff;background:rgba(255,255,255,.14);transform:translateY(-2px)}
-.app-install[hidden]{display:none!important}
 .hero__whatsapp{border-color:#25d366;background:#176b48;color:#fff}
 .hero__whatsapp:hover{border-color:#25d366;background:#20513b;transform:translateY(-2px)}
 .readout{display:none}
@@ -262,16 +259,6 @@
 .success-dialog p{margin:0;color:#596474;line-height:1.65}
 .success-dialog__close{margin-top:28px;min-width:170px;background:var(--red);color:#fff;border:1px solid var(--red);padding:14px 22px;font:600 .82rem var(--sans);cursor:pointer}
 .success-dialog__x{position:absolute;right:14px;top:10px;border:0;background:none;color:#596474;font-size:1.7rem;cursor:pointer}
-
-.has-install-dialog{overflow:hidden}
-.app-install-dialog[hidden]{display:none!important}
-.app-install-dialog{position:fixed;inset:0;z-index:10000;display:grid;box-sizing:border-box;padding:16px;place-items:center;background:rgba(3,10,20,.84);color:var(--ink)}
-.app-install-dialog__card{position:relative;width:min(500px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:clamp(30px,6vw,52px);border-top:5px solid var(--red);background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.36);text-align:center}
-.app-install-dialog__icon{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 22px;border-radius:50%;background:#e9f0f8;color:#002b6e;font-size:1.8rem;font-weight:700}
-.app-install-dialog h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(2rem,6vw,3rem);line-height:1}
-.app-install-dialog p{margin:0;color:#596474;line-height:1.65}
-.app-install-dialog__close{min-width:170px;margin-top:28px;padding:14px 22px;border:1px solid var(--red);background:var(--red);color:#fff;font:600 .82rem var(--sans);cursor:pointer}
-.app-install-dialog__x{position:absolute;right:14px;top:10px;padding:4px;border:0;background:none;color:#596474;font-size:1.7rem;cursor:pointer}
 
 .site-footer{padding:70px 0 28px;background:#050c16;border-top:1px solid var(--hair-dark)}
 .site-footer__inner{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:36px}

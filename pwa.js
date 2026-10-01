@@ -57,7 +57,7 @@
   });
 
   if (installButton) {
-    if (isIOS && !standalone) installButton.hidden = false;
+    installButton.hidden = standalone;
     installButton.addEventListener('click', async function () {
       if (deferredPrompt) {
         deferredPrompt.prompt();
