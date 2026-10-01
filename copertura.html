@@ -56,7 +56,7 @@
       </aside>
 
       <div class="coverage-form-wrap">
-        <form id="coverageForm" action="mailto:viscardigennaro2001@gmail.com" method="GET" novalidate>
+        <form id="coverageForm" action="/api/send-request" method="POST" novalidate>
           <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="_subject" value="Nuova richiesta copertura dal sito">
           <input type="hidden" name="_template" value="table">
@@ -71,7 +71,7 @@
           </div>
           <label class="check coverage-full"><input type="checkbox" name="privacy" required><span>Ho letto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e autorizzo il ricontatto.</span></label>
           <p class="form__status" id="coverageStatus" role="status"></p>
-          <button class="btn btn--solid btn--full" id="coverageSubmit" type="submit">Prepara l’email per Gennaro</button>
+          <button class="btn btn--solid btn--full" id="coverageSubmit" type="submit">Invia la richiesta a Gennaro</button>
         </form>
 
         <div class="coverage-result" id="coverageResult" hidden>

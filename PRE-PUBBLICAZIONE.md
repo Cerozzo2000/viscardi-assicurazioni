@@ -31,14 +31,14 @@ Il sito non deve essere pubblicato finché i dati seguenti non sono stati confer
 ## Moduli e privacy
 
 - Destinatario delle richieste confermato: `viscardigennaro2001@gmail.com`
-- Verificare che i pulsanti email aprano correttamente il programma di posta sui dispositivi usati per il test
-- Valutare con il consulente privacy il trattamento delle richieste ricevute nella casella email del titolare
+- Configurare `RESEND_API_KEY` nelle variabili d’ambiente del progetto Vercel
+- Valutare con il consulente privacy il ruolo di Vercel e Resend, i trasferimenti e i tempi di conservazione
 - Integrare dati completi del titolare e periodo di conservazione nell’informativa privacy
 - Riesaminare Cookie Policy e consenso se vengono aggiunti analytics, mappe, video, pixel o pubblicità
 
 ## Verifiche finali
 
 - Controllare la scheda RUI e l’eventuale sito associato
-- Preparare e inviare un’email reale da ciascun modulo usando un dispositivo con app di posta configurata
+- Eseguire un invio reale da ciascun modulo
 - Verificare ricezione, cartella spam e contenuto delle email
 - Testare telefono, email, WhatsApp, privacy e cookie policy dal dominio definitivo

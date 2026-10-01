@@ -104,6 +104,7 @@
   var result = {};
   var dynamicFields = document.getElementById('dynamicFields');
   var status = document.getElementById('simStatus');
+  var requestEndpoint = window.__FORM_ENDPOINT__ || '/api/send-request';
 
   function fieldMarkup(field) {
     var type = field[0], label = field[1], name = field[2], options = field[3];
@@ -187,14 +188,31 @@
     return ['Buongiorno Gennaro, vorrei richiedere un’analisi.', '', 'Servizio: ' + answers.service, 'Esito orientativo: ' + result.level].concat(answers.details, ['', 'Nome: ' + name, 'Azienda: ' + (form.elements.azienda.value || '-'), 'Telefono: ' + phone, 'Email: ' + (form.elements.email.value || '-'), 'Note: ' + (form.elements.note.value || '-')]).join('\n');
   }
 
-  document.getElementById('sendRequest').addEventListener('click', function () {
+  document.getElementById('sendRequest').addEventListener('click', async function () {
     var message = buildMessage();
     if (!message) return;
     if (form.elements._honey && form.elements._honey.value) return;
-    window.ViscardiForms.openPreparedEmail('Simulazione dal sito — ' + answers.service, message);
-    status.className = 'form__status is-success';
-    status.textContent = 'Email preparata: controllala nella tua app di posta e premi Invia.';
-    window.ViscardiForms.showSuccessDialog('Abbiamo preparato l’email con la simulazione. Controllala nella tua app di posta e premi Invia.');
+    var button = this;
+    button.disabled = true;
+    button.textContent = 'Invio in corso…';
+    try {
+      var response = await fetch(requestEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: 'Nuova simulazione dal sito — ' + answers.service, servizio: answers.service, priorita_orientativa: result.level, nome: form.elements.nome.value.trim(), azienda: form.elements.azienda.value || 'Non indicata', telefono: form.elements.telefono.value.trim(), email: form.elements.email.value || 'Non indicata', note: form.elements.note.value || 'Nessuna', riepilogo: message })
+      });
+      var responseData = await response.json().catch(function () { return {}; });
+      if (!response.ok || responseData.success === false) throw new Error(responseData.message || 'Invio non riuscito');
+      status.className = 'form__status is-success';
+      status.textContent = 'Richiesta inviata correttamente a Gennaro.';
+      button.textContent = 'Richiesta inviata';
+      window.ViscardiForms.showSuccessDialog('La simulazione è stata inviata correttamente. Grazie per la richiesta: Gennaro ti ricontatterà appena possibile.');
+    } catch (error) {
+      status.className = 'form__status is-error';
+      status.textContent = 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
+      button.disabled = false;
+      button.textContent = 'Riprova l’invio';
+    }
   });
 
   var preset = new URLSearchParams(window.location.search).get('service');

@@ -11,7 +11,7 @@
       dialog.id = 'requestSuccessDialog';
       dialog.className = 'success-dialog';
       dialog.setAttribute('aria-labelledby', 'requestSuccessTitle');
-      dialog.innerHTML = '<div class="success-dialog__card"><button class="success-dialog__x" type="button" aria-label="Chiudi">×</button><span class="success-dialog__icon" aria-hidden="true">✓</span><h2 id="requestSuccessTitle">Grazie per la richiesta</h2><p data-success-message></p><button class="success-dialog__close" type="button">Chiudi</button></div>';
+      dialog.innerHTML = '<div class="success-dialog__card"><button class="success-dialog__x" type="button" aria-label="Chiudi">×</button><span class="success-dialog__icon" aria-hidden="true">✓</span><h2 id="requestSuccessTitle">Richiesta inviata</h2><p data-success-message></p><button class="success-dialog__close" type="button">Chiudi</button></div>';
       document.body.appendChild(dialog);
       dialog.addEventListener('click', function (event) {
         if (event.target === dialog || event.target.closest('.success-dialog__close,.success-dialog__x')) dialog.close();
@@ -20,12 +20,7 @@
     $('[data-success-message]', dialog).textContent = message || 'La richiesta è stata inviata correttamente. Gennaro ti ricontatterà appena possibile.';
     if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
   }
-  function openPreparedEmail(subject, body) {
-    var href = 'mailto:viscardigennaro2001@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    if (typeof window.__MAILTO_TEST_HOOK__ === 'function') window.__MAILTO_TEST_HOOK__(href);
-    else window.location.href = href;
-  }
-  window.ViscardiForms = { showSuccessDialog: showSuccessDialog, openPreparedEmail: openPreparedEmail };
+  window.ViscardiForms = { showSuccessDialog: showSuccessDialog };
 
   var header = $('#siteHeader');
   var wa = $('#waFab');
@@ -204,8 +199,9 @@
   var form = $('#contactForm');
   var status = $('#formStatus');
   var contactSubmit = $('#contactSubmit');
+  var requestEndpoint = window.__FORM_ENDPOINT__ || '/api/send-request';
   if (form) {
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
       event.preventDefault();
       var name = form.elements.nome.value.trim();
       var email = form.elements.email.value.trim();
@@ -222,20 +218,24 @@
         form.reset();
         return;
       }
-      var body = [
-        'Buongiorno Gennaro, vorrei richiedere informazioni.', '',
-        'Nome e cognome: ' + name,
-        'Azienda: ' + (form.elements.azienda.value || '-'),
-        'Settore: ' + (form.elements.settore.value || '-'),
-        'Dipendenti: ' + (form.elements.dipendenti.value || '-'),
-        'Telefono: ' + (form.elements.telefono.value || '-'),
-        'Email: ' + email, '',
-        'Richiesta:', message
-      ].join('\n');
-      openPreparedEmail('Richiesta dal sito — ' + name, body);
-      status.className = 'form__status is-success';
-      status.textContent = 'Email preparata: controllala nella tua app di posta e premi Invia.';
-      showSuccessDialog('Abbiamo preparato l’email. Controllala nella tua app di posta e premi Invia per completare la richiesta.');
+      var payload = { _subject: 'Nuova richiesta dal sito — Contatto generale', nome: name, azienda: form.elements.azienda.value || 'Non indicata', settore: form.elements.settore.value || 'Non indicato', dipendenti: form.elements.dipendenti.value || 'Non indicati', telefono: form.elements.telefono.value || 'Non indicato', email: email, messaggio: message };
+      contactSubmit.disabled = true;
+      contactSubmit.textContent = 'Invio in corso…';
+      try {
+        var response = await fetch(requestEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) });
+        var responseData = await response.json().catch(function () { return {}; });
+        if (!response.ok || responseData.success === false) throw new Error(responseData.message || 'Invio non riuscito');
+        status.className = 'form__status is-success';
+        status.textContent = 'Richiesta inviata correttamente a Gennaro.';
+        form.reset();
+        contactSubmit.textContent = 'Richiesta inviata';
+        showSuccessDialog('Grazie: la richiesta è stata inviata correttamente a Gennaro. Sarai ricontattato appena possibile.');
+      } catch (error) {
+        status.className = 'form__status is-error';
+        status.textContent = 'Invio non completato. Riprova tra poco oppure contatta Gennaro tramite WhatsApp.';
+        contactSubmit.disabled = false;
+        contactSubmit.textContent = 'Riprova l’invio';
+      }
     });
   }
 
