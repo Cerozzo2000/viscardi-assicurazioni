@@ -1,4 +1,4 @@
-const CACHE_NAME = 'viscardi-app-v2';
+const CACHE_NAME = 'viscardi-app-v3';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -19,6 +19,7 @@ const APP_SHELL = [
   '/app-icon-512.png',
   '/apple-touch-icon.png',
   '/assets/images/hero-quattro-aree-v2.png',
+  '/logo-viscardi.png',
   '/assets/images/compagnie-lockup.webp',
   '/assets/images/gennaro-viscardi.webp'
 ];
